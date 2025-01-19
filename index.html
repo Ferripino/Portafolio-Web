@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <style>
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animation for fade-in effect */
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        textarea{
+            min-height: 100px;
+            max-height: 200px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Header -->
+    <header class="bg-blue-700 text-white p-6">
+        <h1 class="text-4xl font-bold">Fabián Pelegrín</h1>
+        <nav class="mt-4">
+            <ul class="flex space-x-4">
+                <li><a href="#about" class="hover:underline">Sobre mi</a></li>
+                <li><a href="#technologies" class="hover:underline">Technologías</a></li>
+                <li><a href="#contact" class="hover:underline">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Section -->
+    <main class="relative w-full h-screen flex items-center justify-center bg-gray-200 fade-in" id="about">
+        <img src="assets/img/image.png" alt="Background" class="absolute inset-0 w-full h-full object-cover opacity-1">
+        <div class="relative text-center z-10">
+            <h2 class="text-3xl font-semibold" style="color: #fff;">Front End Developer (Landing Pages)</h2>
+            <p class="mt-4" style="color: #fff;">Soluciones accesibles y adaptadas a tus necesidades</p>
+            <p class="mt-2" style="color: #fff;">Languajes: Español, Inglés, Francés</p>
+        </div>
+    </main>
+
+    <!-- Technologies Section -->
+    <section class="bg-white p-6" id="technologies">
+        <h2 class="text-3xl font-semibold text-center">Tecnologías que manejo</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
+            <div class="flex flex-col items-center transition-transform transform hover:scale-105">
+                <img src="assets/img/html-5.svg" alt="HTML" class="mb-2 w-24 h-24 object-contain">
+                <span>HTML</span>
+            </div>
+            <div class="flex flex-col items-center transition-transform transform hover:scale-105">
+                <img src="assets/img/css3-wordmark.svg" alt="CSS" class="mb-2 w-24 h-24 object-contain">
+                <span>CSS</span>
+            </div>
+            <div class="flex flex-col items-center transition-transform transform hover:scale-105">
+                <img src="assets/img/javascript.svg" alt="JavaScript" class="mb-2 w-24 h-24 object-contain">
+                <span>JavaScript</span>
+            </div>
+            <div class="flex flex-col items-center transition-transform transform hover:scale-105">
+                <img src="assets/img/react-wordmark.svg" alt="React" class="mb-2 w-24 h-24 object-contain">
+                <span>React</span>
+            </div>
+            <div class="flex flex-col items-center transition-transform transform hover:scale-105">
+                <img src="assets/img/git.svg" alt="Git" class="mb-2 w-24 h-24 object-contain">
+                <span>Git</span>
+            </div>
+            <div class="flex flex-col items-center transition-transform transform hover:scale-105">
+                <img src="assets/img/github-box.svg" alt="GitHub" class="mb-2 w-24 h-24 object-contain">
+                <span>GitHub</span>
+            </div>
+        </div>
+    </section>
+
+ <!-- Contact Section -->
+ <section class="bg-gray-400 p-6" id="contact" style="min-height: 50vh;">
+    <h2 class="text-3xl font-semibold text-center">Contact</h2>
+    <form id="contactForm" class="mt-4 max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg border border-gray-300 flex flex-col">
+        <img src="assets/img/email-svgrepo-com.svg" alt="Contact" class="mb-4 rounded-full mx-auto" style="width: 80px; height: 80px;">
+        <input type="text" name="name" placeholder="Name" required class="w-full p-2 mb-4 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <input type="email" name="email" placeholder="Email" required class="w-full p-2 mb-4 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <textarea name="message" placeholder="Message" required class="w-full p-2 mb-4 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" autocomplete="off" ></textarea>
+        <button type="submit" class="bg-blue-600 text-white p-2 rounded hover:bg-blue-700 transition duration-200">Send</button>
+    </form>
+    <div class="mt-4 text-center">
+        <p style="color: #333; font-weight: bold;" >¡Contáctame para discutir cómo puedo ayudarte con tu próximo proyecto!</p>
+    </div>
+</section>
+
+<!-- Footer Section -->
+<footer class="bg-blue-800 text-white p-6" style="height: 30vh;">
+    <h2 class="text-3xl font-semibold text-center">Conéctate conmigo</h2>
+    <div class="flex justify-center space-x-4 mt-4">
+        <!-- Replace these with your social media images -->
+        <a href="wa.me/+536253084"><img src="assets/img/whatsapp.svg" alt="WhatsApp" class="w-10 h-10"></a>
+        <img src="assets/img/github-square.svg" alt="GitHub" class="w-10 h-10">
+        <img src="assets/img/twitter (1).svg" alt="Twitter" class="w-10 h-10">
+        <img src="assets/img/instagram.svg" alt="Instagram" class="w-10 h-10">
+    </div>
+</footer>
+
+    <script src="scripts/script.js"></script>
+</body>
+</html>
