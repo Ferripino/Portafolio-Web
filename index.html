@@ -1,13 +1,14 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fabián Pelegrín</title>
+    <meta name="description" content="Fabián Pelegrín - Front End Developer especializado en Landing Pages.">
+    <meta name="keywords" content="Fabián Pelegrín, Front End Developer, Landing Pages, HTML, CSS, JavaScript, React, Git, GitHub, Tailwind">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" async></script>
     <style>
         /* Smooth scrolling */
         html {
@@ -28,7 +29,21 @@
             }
         }
 
-        textarea{
+        /* Additional animations */
+        .slide-in {
+            animation: slideIn 1s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        textarea {
             min-height: 100px;
             max-height: 200px;
         }
@@ -37,106 +52,102 @@
 <body class="bg-gray-100">
 
     <!-- Header -->
-    <!-- Header -->
-<header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-4 md:p-6 shadow-lg">
-    <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
-        <h1 class="text-2xl md:text-4xl font-bold text-center md:text-left">Fabián Pelegrín | FrontEnd Developer</h1>
-        <nav class="mt-4 md:mt-0">
-            <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6">
-                <li>
-                    <a href="#about" class="hover:text-blue-300 transition duration-300">Sobre mí</a>
-                </li>
-                <li>
-                    <a href="#technologies" class="hover:text-blue-300 transition duration-300">Tecnologías</a>
-                </li>
-                <li>
-                    <a href="#contact" class="hover:text-blue-300 transition duration-300">Contacto</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</header>
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-4 md:p-6 shadow-lg">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <h1 class="text-2xl md:text-4xl font-bold text-center md:text-left">Fabián Pelegrín</h1>
+            <nav class="mt-4 md:mt-0">
+                <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6">
+                    <li>
+                        <a href="#about" class="hover:text-blue-300 transition duration-300">Sobre mí</a>
+                    </li>
+                    <li>
+                        <a href="#technologies" class="hover:text-blue-300 transition duration-300">Tecnologías</a>
+                    </li>
+                    <li>
+                        <a href="#contact" class="hover:text-blue-300 transition duration-300">Contacto</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
     <!-- Main Section -->
-<main class="relative w-full h-screen flex items-center justify-center bg-gray-200 fade-in" id="about">
-    <img src="assets/img/image.png" alt="Background" class="absolute inset-0 w-full h-full object-cover opacity-90"> <!-- Added opacity -->
-    <div class="relative text-center z-10">
-        <h2 class="text-4xl md:text-5xl font-semibold" style="color: #fff;">Front End Developer (Landing Pages)</h2> <!-- Increased font size and changed color -->
-        <p class="mt-4 text-lg" style="color: #fff;">Soluciones accesibles y adaptadas a tus necesidades</p> <!-- Changed color -->
-    </div>
-</main>
+    <main class="relative w-full h-screen flex items-center justify-center bg-gray-200 fade-in" id="about">
+        <img src="assets/img/image.png" alt="Background" class="absolute inset-0 w-full h-full object-cover opacity-90">
+        <div class="relative text-center z-10">
+            <h2 class="text-4xl md:text-5xl font-semibold text-white">Front End Developer (Landing Pages)</h2>
+            <p class="mt-4 text-lg text-white">Soy un programador freelancer en busca de oportunidades para adquirir experiencia y monetizar mis habilidades. Si necesitas un sitio web básico, una mejora en tu página existente o cualquier otro servicio relacionado, estaré encantado de ayudarte. Mi objetivo es ofrecer soluciones accesibles y adaptadas a tus necesidades.</p>
+        </div>
+    </main>
 
     <!-- Technologies Section -->
-<section class="bg-white p-6 min-h-[70vh]" id="technologies">
-    <div class="flex flex-col justify-center h-full">
-        <h2 class="text-3xl font-semibold text-center">Tecnologías que manejo</h2>
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
-            <div class="flex flex-col items-center transition-transform transform hover:scale-105">
-                <img src="assets/img/html-5.svg" alt="HTML" class="mb-2 w-24 h-24 object-contain">
-                <span>HTML</span>
-            </div>
-            <div class="flex flex-col items-center transition-transform transform hover:scale-105">
-                <img src="assets/img/css3-wordmark.svg" alt="CSS" class="mb-2 w-24 h-24 object-contain">
-                <span>CSS</span>
-            </div>
-            <div class="flex flex-col items-center transition-transform transform hover:scale-105">
-                <img src="assets/img/javascript.svg" alt="JavaScript" class="mb-2 w-24 h-24 object-contain">
-                <span>JavaScript</span>
-            </div>
-            <div class="flex flex-col items-center transition-transform transform hover:scale-105">
-                <img src="assets/img/react-wordmark.svg" alt="React" class="mb-2 w-24 h-24 object-contain">
-                <span>React</span>
-            </div>
-            <div class="flex flex-col items-center transition-transform transform hover:scale-105">
-                <img src="assets/img/git.svg" alt="Git" class="mb-2 w-24 h-24 object-contain">
-                <span>Git</span>
-            </div>
-            <div class="flex flex-col items-center transition-transform transform hover:scale-105">
-                <img src="assets/img/github-box.svg" alt="GitHub" class="mb-2 w-24 h-24 object-contain">
-                <span>GitHub</span>
-            </div>
-            <div class="flex flex-col items-center transition-transform transform hover:scale-105">
-                <img src="assets/img/tailwindcss-dark.svg" alt="Tailwind" class="mb-2 w-24 h-24 object-contain">
-                <span>Tailwind</span>
+    <section class="bg-white p-6 min-h-[70vh]" id="technologies">
+        <div class="flex flex-col justify-center h-full">
+            <h2 class="text-3xl font-semibold text-center">Tecnologías que manejo</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
+                <div class="flex flex-col items-center transition-transform transform hover:scale-105">
+                    <img src="assets/img/html-5.svg" alt="HTML" class="mb-2 w-24 h-24 object-contain">
+                    <span>HTML</span>
+                </div>
+                <div class="flex flex-col items-center transition-transform transform hover:scale-105">
+                    <img src="assets/img/css3-wordmark.svg" alt="CSS" class="mb-2 w-24 h-24 object-contain">
+                    <span>CSS</span>
+                </div>
+                <div class="flex flex-col items-center transition-transform transform hover:scale-105">
+                    <img src="assets/img/javascript.svg" alt="JavaScript" class="mb-2 w-24 h-24 object-contain">
+                    <span>JavaScript</span>
+                </div>
+                <div class="flex flex-col items-center transition-transform transform hover:scale-105">
+                    <img src="assets/img/react-wordmark.svg" alt="React" class="mb-2 w-24 h-24 object-contain">
+                    <span>React</span>
+                </div>
+                <div class="flex flex-col items-center transition-transform transform hover:scale-105">
+                    <img src="assets/img/git.svg" alt="Git" class="mb-2 w-24 h-24 object-contain">
+                    <span>Git</span>
+                </div>
+                <div class="flex flex-col items-center transition-transform transform hover:scale-105">
+                    <img src="assets/img/github-box.svg" alt="GitHub" class="mb-2 w-24 h-24 object-contain">
+                    <span>GitHub</span>
+                </div>
+                <div class="flex flex-col items-center transition-transform transform hover:scale-105">
+                    <img src="assets/img/tailwindcss-dark.svg" alt="Tailwind" class="mb-2 w-24 h-24 object-contain">
+                    <span>Tailwind</span>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
- <!-- Contact Section -->
- <section class="bg-gray-400 p-6" id="contact" style="min-height: 50vh;">
-    <h2 class="text-3xl font-semibold text-center">Contacto</h2>
-    <form action="https://formsubmit.co/fpelegrincardoso@gmail.com" method="POST" id="contactForm" class="mt-4 max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg border border-gray-300 flex flex-col" >
-        <img src="assets/img/email-svgrepo-com.svg" alt="Contact" class="mb-4 rounded-full mx-auto" style="width: 80px; height: 80px;">
-        <input type="text" name="name" placeholder="Name" required class="w-full p-2 mb-4 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
-        <input type="email" name="email" placeholder="Email" required class="w-full p-2 mb-4 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
-        <textarea name="message" placeholder="Message" required class="w-full p-2 mb-4 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" autocomplete="off" ></textarea>
-        <button type="submit" class="bg-blue-600 text-white p-2 rounded hover:bg-blue-700 transition duration-200" id="button_submit" onclick='Swal.fire({
-            title: "Gracias por su mensaje",
-            text: "En un rato me pondré en contacto con usted",
-            icon: "success"
-    })' >Enviar</button>
+    <!-- Contact Section -->
+    <section class="bg-gray-400 p-6" id="contact" style="min-height: 50vh;">
+        <h2 class="text-3xl font-semibold text-center">Contacto</h2>
+        <form action="https://formsubmit.co/fpelegrincardoso@gmail.com" method="POST" id="contactForm" class="mt-4 max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg border border-gray-300 flex flex-col">
+            <img src="assets/img/email-svgrepo-com.svg" alt="Contact" class="mb-4 rounded-full mx-auto" style="width: 80px; height: 80px;">
+            <input type="text" name="name" placeholder="Name" required class="w-full p-2 mb-4 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <input type="email" name="email" placeholder="Email" required class="w-full p-2 mb-4 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <textarea name="message" placeholder="Message" required class="w-full p-2 mb-4 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" autocomplete="off"></textarea>
+            <button type="submit" class="bg-blue-600 text-white p-2 rounded hover:bg-blue-700 transition duration-200" id="button_submit" onclick='Swal.fire({
+                title: "Gracias por su mensaje",
+                text: "En un rato me pondré en contacto con usted",
+                icon: "success"
+            })'>Enviar</button>
+            <input type="hidden" name="_next" value="https://portafolio-web-ferripinos-projects.vercel.app/">
+            <input type="hidden" name="_captcha" value="false">
+        </form>
+        <div class="mt-4 text-center">
+            <p class="text-gray-800 font-bold">¡Contáctame para discutir cómo puedo ayudarte con tu próximo proyecto!</p>
+        </div>
+    </section>
 
-        <input type="hidden" name="_next" value="https://portafolio-web-ferripinos-projects.vercel.app/">
-        <input type="hidden" name="_captcha" value="false">
-    </form>
-    <div class="mt-4 text-center">
-        <p style="color: #333; font-weight: bold;" >¡Contáctame para discutir cómo puedo ayudarte con tu próximo proyecto!</p>
-    </div>
-</section>
-
-<!-- Footer Section -->
-<footer class="bg-blue-800 text-white p-6" style="height: 30vh;">
-    <h2 class="text-3xl font-semibold text-center">Redes Sociales</h2>
-    <div class="flex justify-center space-x-4 mt-4">
-        <!-- Replace these with your social media images -->
-        <a href="https://wa.me/+536253084" title="WhatsApp"><img src="assets/img/whatsapp.svg" alt="WhatsApp" class="w-10 h-10"></a>
-        <a href="https://github.com/Ferripino" title="GitHub"><img src="assets/img/github-square.svg" alt="GitHub" class="w-10 h-10"></a>
-        <img src="assets/img/twitter (1).svg" title="Twitter" alt="Twitter" class="w-10 h-10">
-        <img src="assets/img/instagram.svg" title="Instagram" alt="Instagram" class="w-10 h-10">
-    </div>
-</footer>
-
-    <script src="scripts/script.js"></script>
+    <!-- Footer Section -->
+    <footer class="bg-blue-800 text-white p-6" style="height: 30vh;">
+        <h2 class="text-3xl font-semibold text-center">Redes Sociales</h2>
+        <div class="flex justify-center space-x-4 mt-4">
+            <a href="https://wa.me/+536253084" title="WhatsApp"><img src="assets/img/whatsapp.svg" alt="WhatsApp" class="w-10 h-10"></a>
+            <a href="https://github.com/Ferripino" title="GitHub"><img src="assets/img/github-square.svg" alt="GitHub" class="w-10 h-10"></a>
+            <a href="https://twitter.com/Ferripino" title="Twitter"><img src="assets/img/twitter (1).svg" alt="Twitter" class="w-10 h-10"></a>
+            <a href="https://instagram.com/Ferripino" title="Instagram"><img src="assets/img/instagram.svg" alt="Instagram" class="w-10 h-10"></a>
+        </div>
+    </footer>
+    <script src="scripts/script.js" async></script>
 </body>
 </html>
