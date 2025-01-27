@@ -190,6 +190,31 @@
             transform: scale(1.05); /* Slightly enlarge on hover */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
         }
+
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro para mayor contraste */
+    padding: 20px; /* Espacio alrededor del contenido */
+}
+
+main .relative {
+    max-width: 900px; /*ncho máximo para el texto */
+    margin: 0 20px; /* Espacio lateral */
+}
+
+main h2, main p {
+    margin: 0 auto; /* Centra el texto */
+    width: 100%; /* Asegura que el texto ocupe todo el ancho disponible */
+}
+.tech-label {
+    font-weight: bold;
+    color: #0d1538; /* Puedes cambiar este color según tu preferencia */
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+}
     </style>
 </head>
 <body class="bg-gray-100">
@@ -248,31 +273,31 @@
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
                 <div class="tech-card flex flex-col items-center transition-transform transform hover:scale-105">
                     <img src="assets/img/html-5.svg" alt="HTML" class="mb-2 w-24 h-24 object-contain">
-                    <span>HTML</span>
+                    <span class="tech-label">HTML</span>
                 </div>
                 <div class="tech-card flex flex-col items-center transition-transform transform hover:scale-105">
                     <img src="assets/img/css3-wordmark.svg" alt="CSS" class="mb-2 w-24 h-24 object-contain">
-                    <span>CSS</span>
+                    <span class="tech-label">CSS</span>
                 </div>
                 <div class="tech-card flex flex-col items-center transition-transform transform hover:scale-105">
                     <img src="assets/img/javascript.svg" alt="JavaScript" class="mb-2 w-24 h-24 object-contain">
-                    <span>JavaScript</span>
+                    <span class="tech-label">JavaScript</span>
                 </div>
                 <div class="tech-card flex flex-col items-center transition-transform transform hover:scale-105">
                     <img src="assets/img/react-wordmark.svg" alt="React" class="mb-2 w-24 h-24 object-contain">
-                    <span>React</span>
+                    <span class="tech-label">React</span>
                 </div>
                 <div class="tech-card flex flex-col items-center transition-transform transform hover:scale-105">
                     <img src="assets/img/git.svg" alt="Git" class="mb-2 w-24 h-24 object-contain">
-                    <span>Git</span>
+                    <span class="tech-label">Git</span>
                 </div>
                 <div class="tech-card flex flex-col items-center transition-transform transform hover:scale-105">
                     <img src="assets/img/github-box.svg" alt="GitHub" class="mb-2 w-24 h-24 object-contain">
-                    <span>GitHub</span>
+                    <span class="tech-label">GitHub</span>
                 </div>
                 <div class="tech-card flex flex-col items-center transition-transform transform hover:scale-105">
                     <img src="assets/img/tailwindcss-dark.svg" alt="Tailwind" class="mb-2 w-24 h-24 object-contain">
-                    <span>Tailwind</span>
+                    <span class="tech-label">Tailwind</span>
                 </div>
             </div>
         </div>
@@ -283,9 +308,9 @@
         <h2 class="text-3xl font-semibold text-center">Contacto</h2>
         <form action="https://formsubmit.co/fpelegrincardoso@gmail.com" method="POST" id="contactForm" class="mt-4 max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg border border-gray-300 flex flex-col">
             <img src="assets/img/email-svgrepo-com.svg" alt="Contact" class="mb-4 rounded-full mx-auto" style="width: 80px; height: 80px;">
-            <input type="text" name="name" placeholder="Name" required class="w-full p-2 mb-4 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <input type="text" name="name" placeholder="Nombre" required class="w-full p-2 mb-4 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
             <input type="email" name="email" placeholder="Email" required class="w-full p-2 mb-4 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <textarea name="message" placeholder="Message" required class="w-full p-2 mb-4 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" autocomplete="off"></textarea>
+            <textarea name="message" placeholder="Mensaje" required class="w-full p-2 mb-4 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" autocomplete="off"></textarea>
             <button type="submit" class="bg-blue-600 text-white p-2 rounded hover:bg-blue-700 transition duration-200" id="button_submit" onclick='Swal.fire({
                 title: "Gracias por su mensaje",
                 text: "En un rato me pondré en contacto con usted",
