@@ -36,7 +36,7 @@
 
         @keyframes slideIn {
             from {
-                transform: translateX(-100%);
+                transform: translateX(100%);
             }
             to {
                 transform: translateX(0);
@@ -47,14 +47,165 @@
             min-height: 100px;
             max-height: 200px;
         }
+
+        /* Hamburger menu styles */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 4px;
+            transition: 0.4s;
+        }
+
+        .menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 250px;
+            background-color: #2d3748;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            z-index: 30;
+            opacity: 0;
+        }
+
+        .menu.active {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .menu ul li {
+            margin: 20px 0;
+            opacity: 0;
+            transform: translateX(100%);
+            animation: slideInMenu 0.5s forwards;
+        }
+
+        .menu.active ul li {
+            animation-delay: calc(0.1s * var(--i));
+        }
+
+        .menu ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        @keyframes slideInMenu {
+            from {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 20;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            nav {
+                display: none;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .menu {
+                display: none;
+            }
+        }
+
+        /* Reduce brightness of main image */
+        .main-image {
+            filter: brightness(0.3); /* Adjust the value as needed */
+        }
+
+        /* Sticky header */
+        .sticky {
+            position: -webkit-sticky; /* For Safari */
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background-color: #2d3748; /* Adjust as needed */
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        /* Technology card styles */
+        .tech-card {
+            border: 2px solid #2d3748; /* Border color matching the header */
+            border-radius: 8px; /* Rounded corners */
+            padding: 16px; /* Padding inside the card */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transition for hover effects */
+        }
+
+        .tech-card:hover {
+            transform: scale(1.05); /* Slightly enlarge on hover */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+        }
     </style>
 </head>
 <body class="bg-gray-100">
 
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
     <!-- Header -->
-    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-4 md:p-6 shadow-lg">
-        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
-            <h1 class="text-2xl md:text-4xl font-bold text-center md:text-left">Fabián Pelegrín</h1>
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-4 md:p-6 shadow-lg sticky">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl md:text-4xl font-bold">Fabián Pelegrín</h1>
+            <div class="hamburger" id="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
             <nav class="mt-4 md:mt-0">
                 <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6">
                     <li>
@@ -71,12 +222,22 @@
         </div>
     </header>
 
+    <!-- Hamburger Menu -->
+    <div class="menu" id="menu">
+        <button class="close-btn" id="close-btn">&times;</button>
+        <ul>
+            <li style="--i: 1;"><a href="#about">Sobre mí</a></li>
+            <li style="--i: 2;"><a href="#technologies">Tecnologías</a></li>
+            <li style="--i: 3;"><a href="#contact">Contacto</a></li>
+        </ul>
+    </div>
+
     <!-- Main Section -->
     <main class="relative w-full h-screen flex items-center justify-center bg-gray-200 fade-in" id="about">
-        <img src="assets/img/image.png" alt="Background" class="absolute inset-0 w-full h-full object-cover opacity-90">
-        <div class="relative text-center z-10">
-            <h2 class="text-4xl md:text-5xl font-semibold text-white">Front End Developer (Landing Pages)</h2>
-            <p class="mt-4 text-lg text-white">Soy un programador freelancer en busca de oportunidades para adquirir experiencia y monetizar mis habilidades. Si necesitas un sitio web básico, una mejora en tu página existente o cualquier otro servicio relacionado, estaré encantado de ayudarte. Mi objetivo es ofrecer soluciones accesibles y adaptadas a tus necesidades.</p>
+        <img src="assets/img/image.png" alt="Background" class="absolute inset-0 w-full h-full object-cover opacity-90 main-image">
+        <div class="relative text-center z-1">
+            <h2 class="text-4xl md:text-5xl font-semibold text-white">Front End Developer</h2>
+            <p class="mt-4 text-lg text-white">Soy un programador freelancer en busca de oportunidades para adquirir experiencia y monetizar mis habilidades. Si necesitas un sitio web, una mejora en tu página existente o cualquier otro servicio relacionado, estaré encantado de ayudarte. Mi objetivo es ofrecer soluciones accesibles y adaptadas a tus necesidades.</p>
         </div>
     </main>
 
@@ -85,31 +246,31 @@
         <div class="flex flex-col justify-center h-full">
             <h2 class="text-3xl font-semibold text-center">Tecnologías que manejo</h2>
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
-                <div class="flex flex-col items-center transition-transform transform hover:scale-105">
+                <div class="tech-card flex flex-col items-center transition-transform transform hover:scale-105">
                     <img src="assets/img/html-5.svg" alt="HTML" class="mb-2 w-24 h-24 object-contain">
                     <span>HTML</span>
                 </div>
-                <div class="flex flex-col items-center transition-transform transform hover:scale-105">
+                <div class="tech-card flex flex-col items-center transition-transform transform hover:scale-105">
                     <img src="assets/img/css3-wordmark.svg" alt="CSS" class="mb-2 w-24 h-24 object-contain">
                     <span>CSS</span>
                 </div>
-                <div class="flex flex-col items-center transition-transform transform hover:scale-105">
+                <div class="tech-card flex flex-col items-center transition-transform transform hover:scale-105">
                     <img src="assets/img/javascript.svg" alt="JavaScript" class="mb-2 w-24 h-24 object-contain">
                     <span>JavaScript</span>
                 </div>
-                <div class="flex flex-col items-center transition-transform transform hover:scale-105">
+                <div class="tech-card flex flex-col items-center transition-transform transform hover:scale-105">
                     <img src="assets/img/react-wordmark.svg" alt="React" class="mb-2 w-24 h-24 object-contain">
                     <span>React</span>
                 </div>
-                <div class="flex flex-col items-center transition-transform transform hover:scale-105">
+                <div class="tech-card flex flex-col items-center transition-transform transform hover:scale-105">
                     <img src="assets/img/git.svg" alt="Git" class="mb-2 w-24 h-24 object-contain">
                     <span>Git</span>
                 </div>
-                <div class="flex flex-col items-center transition-transform transform hover:scale-105">
+                <div class="tech-card flex flex-col items-center transition-transform transform hover:scale-105">
                     <img src="assets/img/github-box.svg" alt="GitHub" class="mb-2 w-24 h-24 object-contain">
                     <span>GitHub</span>
                 </div>
-                <div class="flex flex-col items-center transition-transform transform hover:scale-105">
+                <div class="tech-card flex flex-col items-center transition-transform transform hover:scale-105">
                     <img src="assets/img/tailwindcss-dark.svg" alt="Tailwind" class="mb-2 w-24 h-24 object-contain">
                     <span>Tailwind</span>
                 </div>
@@ -148,6 +309,36 @@
             <a href="https://instagram.com/Ferripino" title="Instagram"><img src="assets/img/instagram.svg" alt="Instagram" class="w-10 h-10"></a>
         </div>
     </footer>
+
+    <script>
+        // Hamburger menu functionality
+        const hamburger = document.getElementById('hamburger');
+        const menu = document.getElementById('menu');
+        const overlay = document.getElementById('overlay');
+        const closeBtn = document.getElementById('close-btn');
+
+        hamburger.addEventListener('click', () => {
+            menu.classList.toggle('active');
+            overlay.classList.toggle('active');
+        });
+
+        overlay.addEventListener('click', () => {
+            menu.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            menu.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+
+        document.querySelectorAll('.menu ul li a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+        });
+    </script>
     <script src="scripts/script.js" async></script>
 </body>
 </html>
