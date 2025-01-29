@@ -15,9 +15,18 @@
             scroll-behavior: smooth;
         }
 
+        .lazy-load {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.lazy-load.visible {
+    opacity: 1;
+}
+
         /* Animation for fade-in effect */
         .fade-in {
-            animation: fadeIn 1s ease-in-out;
+            animation: fadeIn .5s ease-in-out;
         }
 
         @keyframes fadeIn {
@@ -268,7 +277,7 @@ main h2, main p {
     </main>
 
     <!-- Technologies Section -->
-    <section class="bg-white p-6 min-h-[70vh]" id="technologies">
+    <section class="bg-white p-6 min-h-[70vh] lazy-load" id="technologies">
         <div class="flex flex-col justify-center h-full">
             <h2 class="text-3xl font-semibold text-center">Tecnologías que manejo</h2>
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
@@ -305,7 +314,7 @@ main h2, main p {
     </section>
 
     <!-- Contact Section -->
-    <section class="bg-gray-400 p-6" id="contact" style="min-height: 50vh;">
+    <section class="bg-gray-400 p-6 lazy-load" id="contact" style="min-height: 50vh;">
         <h2 class="text-3xl font-semibold text-center">Contacto</h2>
         <form action="https://formsubmit.co/fpelegrincardoso@gmail.com" method="POST" id="contactForm" class="mt-4 max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg border border-gray-300 flex flex-col">
             <img src="assets/img/email-svgrepo-com.svg" alt="Contact" class="mb-4 rounded-full mx-auto" style="width: 80px; height: 80px;">
@@ -326,8 +335,8 @@ main h2, main p {
     </section>
 
     <!-- Footer Section -->
-    <footer class="bg-blue-800 text-white p-6" style="height: 30vh;">
-        <h2 class="text-3xl font-semibold text-center">Redes Sociales</h2>
+    <footer class="bg-blue-800 text-white p-6 " style="height: 30vh;">
+        <h2 class="text-3xl font-semibold text-center">Redes sociales</h2>
         <div class="flex justify-center space-x-4 mt-4">
             <a href="https://wa.me/+5356253084" title="WhatsApp"><img src="assets/img/whatsapp.svg" alt="WhatsApp" class="w-10 h-10"></a>
             <a href="https://github.com/Ferripino" title="GitHub"><img src="assets/img/github-dark.svg" alt="GitHub" class="w-10 h-10"></a>
@@ -363,6 +372,25 @@ main h2, main p {
                 overlay.classList.remove('active');
             });
         });
+
+        document.addEventListener("DOMContentLoaded", function() {
+        const lazyLoadSections = document.querySelectorAll('.lazy-load');
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        lazyLoadSections.forEach(section => {
+            observer.observe(section);
+        });
+    });
     </script>
     <script src="scripts/script.js" async></script>
 </body>
