@@ -24,6 +24,8 @@
 
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <!-- Agrega esto en el head -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
 
     <style>
@@ -41,9 +43,89 @@
             scroll-padding-top: 80px;
         }
 
+         /* Preloader */
+         .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--color-dark-1);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--color-text-secondary);
+            border-top-color: var(--color-accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+         /* Botón Scroll Top */
+         .scroll-top-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--color-accent);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 100;
+        }
+
+        .scroll-top-btn.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-top-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--color-text-primary);
+        }
+
+        /* Botón CTA corregido */
+        .cta-btn {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            background: var(--color-accent);
+            color: white;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            border: 2px solid rgba(255,255,255,0.1);
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px -1px rgba(0,0,0,0.2);
+            background: #1a43b8;
+        }
         .lazy-load {
-            opacity: 1; /* Visible por defecto */
-            transform: translateY(0); /* Sin desplazamiento inicial */
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
 
         .main-image {
@@ -102,7 +184,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background-color: var(--color-accent);
+            background-color: #fff;
             transition: width 0.3s ease;
         }
 
@@ -229,19 +311,276 @@
             outline: none;
         }
 
-        .hamburger-close {
-            position: absolute;
-            top: 20px; /* Ajusta según sea necesario */
-            right: 55px; /* Ajusta según sea necesario */
-            font-size: 40px; /* Tamaño de la "X" */
-            cursor: pointer;
-            z-index: 1000; /* Asegura que esté por encima de otros elementos */
+        
+        /* MENÚ HAMBURGUESA FUNCIONAL */
+        .menu {
+            transform: translateX(100%);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(12px);
+            width: 75%;
+            max-width: 300px;
+            right: 0;
+            top: 0;
+            height: 100vh;
+            position: fixed;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.98) !important;
         }
+
+        .menu-active {
+            transform: translateX(0) !important;
+        }
+
+        .dark-mode .menu {
+            background: rgba(30, 41, 59, 0.98) !important;
+        }
+
+        /* Animación del icono hamburguesa */
+        #hamburger.open span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        #hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+        #hamburger.open span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* Estilos de los enlaces */
+        .menu-links {
+            padding-top: 80px;
+        }
+        
+        .menu-links a {
+            padding: 1.25rem 2rem;
+            margin: 0.5rem 1rem;
+            display: block;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .menu-links a:hover {
+            background: rgba(0, 0, 0, 0.05);
+            transform: translateX(10px);
+        }
+
+        .dark-mode .menu-links a:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+         /* Menú Hamburguesa Mejorado */
+    .menu {
+        transform: translateX(100%);
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        backdrop-filter: blur(16px);
+        width: 85%;
+        max-width: 320px;
+        right: 0;
+        top: 0;
+        height: 100vh;
+        position: fixed;
+        z-index: 1000;
+        background: rgba(255, 255, 255, 0.95) !important;
+        box-shadow: -8px 0 32px rgba(0, 0, 0, 0.1);
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .dark-mode .menu {
+        background: rgba(15, 23, 42, 0.98) !important;
+        box-shadow: -8px 0 32px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Icono de cerrar mejorado */
+    #close-menu {
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        background: rgba(0, 0, 0, 0.05);
+    }
+
+    #close-menu:hover {
+        transform: rotate(90deg);
+        background: rgba(0, 0, 0, 0.1);
+    }
+
+    .dark-mode #close-menu {
+        background: rgba(255, 255, 255, 0.05);
+        color: white !important;
+    }
+
+    /* Enlaces del menú mejorados */
+    .menu-links {
+        padding-top: 4rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .menu-links a {
+        padding: 1.25rem 1.5rem;
+        margin: 0 0.5rem;
+        border-radius: 12px;
+        transition: all 0.4s ease;
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        color: #1e293b;
+        font-weight: 500;
+    }
+
+    .menu-links a::before {
+        content: '';
+        position: absolute;
+        left: -10px;
+        width: 4px;
+        height: 0%;
+        background: var(--color-accent);
+        border-radius: 4px;
+        transition: all 0.3s ease;
+    }
+
+    .menu-links a:hover {
+        background: rgba(29, 78, 216, 0.05);
+        transform: translateX(15px);
+        color: var(--color-accent);
+    }
+
+    .menu-links a:hover::before {
+        height: 60%;
+    }
+
+    .menu-links a.active {
+        background: rgba(29, 78, 216, 0.1);
+        color: var(--color-accent);
+    }
+
+    .dark-mode .menu-links a {
+        color: #f8fafc;
+    }
+
+    .dark-mode .menu-links a:hover {
+        background: rgba(29, 78, 216, 0.1);
+    }
+
+    /* Íconos de los enlaces */
+    .menu-links a svg {
+        width: 24px;
+        height: 24px;
+        stroke: currentColor;
+        flex-shrink: 0;
+    }
+
+    /* Animación de entrada escalonada */
+    .menu-active .menu-links a {
+        opacity: 0;
+        transform: translateX(30px);
+        animation: menuItemEnter 0.4s ease forwards;
+    }
+
+    @keyframes menuItemEnter {
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    .menu-links a:nth-child(1) { animation-delay: 0.1s; }
+    .menu-links a:nth-child(2) { animation-delay: 0.2s; }
+    .menu-links a:nth-child(3) { animation-delay: 0.3s; }
+
+    /* Optimización de transiciones */
+    .menu {
+        transform: translateX(100%);
+        transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                   opacity 0.3s linear;
+        will-change: transform, opacity;
+    }
+
+    /* Animación de ítems con requestAnimationFrame */
+    .menu-active .menu-links a {
+        opacity: 0;
+        transform: translateX(30px);
+        transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+
+    /* Mejor uso de composición GPU */
+    .menu-links a {
+        backface-visibility: hidden;
+        perspective: 1000px;
+        transform: translateZ(0);
+    }
+
+    /* Optimización de keyframes */
+    @keyframes smoothEntry {
+        0% {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    /* Timing preciso con delays escalonados */
+    .menu-active .menu-links a {
+        animation: smoothEntry 0.5s forwards;
+    }
+    .menu-links a:nth-child(1) { animation-delay: 0.15s; }
+    .menu-links a:nth-child(2) { animation-delay: 0.25s; }
+    .menu-links a:nth-child(3) { animation-delay: 0.35s; }
+
+    /* Mejor rendimiento en hover */
+    .menu-links a:hover {
+        transform: translateX(15px) translateZ(0);
+        transition-duration: 0.3s;
+    }
+    .menu-links a .material-icons {
+        font-size: 1.5rem;
+        width: 30px;
+        transition: all 0.3s ease;
+        color: var(--color-accent);
+    }
+
+    .dark-mode .menu-links a .material-icons {
+        color: #93c5fd;
+    }
+
+    .menu-links a:hover .material-icons {
+        transform: scale(1.1);
+        color: var(--color-accent);
+    }
+
+    /* Ajuste de alineación */
+    .menu-links a {
+        align-items: center;
+    
     </style>
 </head>
 <body class="bg-gray-50 transition-colors duration-300">
-    <!-- Overlay -->
-    <div class="overlay hidden fixed inset-0 bg-black/50 z-40" id="overlay"></div>
+   <!-- Preloader -->
+   <div class="preloader">
+    <div class="spinner"></div>
+</div>
+
+<!-- Scroll to top -->
+<button class="scroll-top-btn">
+    <svg viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
+</button>
+
+<!-- Overlay -->
+<div class="overlay hidden fixed inset-0 bg-black/50 z-40" id="overlay"></div>
 
     <!-- Header -->
     <header class="header bg-gradient-to-r from-blue-600 to-blue-800 text-white p-4 md:p-6 shadow-lg sticky top-0 z-50">
@@ -271,14 +610,25 @@
         </div>
     </header>
 
-    <!-- Menú Móvil -->
-    <div class="menu fixed top-0 right-0 h-full w-64 bg-white shadow-xl z-50 p-4 transform translate-x-full transition-transform" id="mobile-menu">
-        <button id="close-menu" class="text-3xl mb-4 text-gray-800 close-menu hamburger-close">&times;</button>
-        <ul class="space-y-4" >
-            <li style="margin-top: 50px;"><a href="#about" class="block p-3 rounded-lg hover:bg-gray-100">Sobre mí</a></li>
-            <li><a href="#technologies" class="block p-3 rounded-lg hover:bg-gray-100">Tecnologías</a></li>
-            <li><a href="#contact" class="block p-3 rounded-lg hover:bg-gray-100">Contacto</a></li>
-        </ul>
+    <!-- Menú Móvil Corregido -->
+    <div class="menu" id="mobile-menu">
+        <button id="close-menu" class="text-gray-600 dark:text-gray-200">
+            <i class="material-icons-round">close</i>
+        </button>
+        <nav class="menu-links">
+            <a href="#about" class="text-gray-800 dark:text-white">
+                <i class="material-icons-round">person</i>
+                Sobre mí
+            </a>
+            <a href="#technologies" class="text-gray-800 dark:text-white">
+                <i class="material-icons-round">code</i>
+                Tecnologías
+            </a>
+            <a href="#contact" class="text-gray-800 dark:text-white">
+                <i class="material-icons-round">mail</i>
+                Contacto
+            </a>
+        </nav>
     </div>
 
     <!-- Sección Principal -->
@@ -289,7 +639,9 @@
             <p class="text-lg md:text-xl text-white max-w-2xl mx-auto leading-relaxed">
                 Especializado en crear experiencias digitales impactantes y funcionales
             </p>
+            <a href="#contact" class="cta-btn">Contáctame</a>
         </div>
+        
         <div class="section-divider"></div>
     </main>
 
@@ -298,13 +650,13 @@
         <div class="container mx-auto px-4">
             <div class="section-divider"></div>
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Tecnologías que manejo</h2>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="tech-card flex flex-col items-center p-6 rounded-xl border bg-white">
-                    <img src="assets/img/html-5.svg" alt="HTML5" class="mb-3 w-20 h-20">
+                    <img src="assets/img/html5.svg" alt="HTML5" class="mb-3 w-20 h-20">
                     <span class="font-medium">HTML5</span>
                 </div>
                 <div class="tech-card flex flex-col items-center p-6 rounded-xl border bg-white">
-                    <img src="assets/img/css3-wordmark.svg" alt="CSS3" class="mb-3 w-20 h-20">
+                    <img src="assets/img/css3.svg" alt="CSS3" class="mb-3 w-20 h-20">
                     <span class="font-medium">CSS3</span>
                 </div>
                 <div class="tech-card flex flex-col items-center p-6 rounded-xl border bg-white">
@@ -330,7 +682,7 @@
     </section>
 
     <!-- Contacto -->
-    <section class="bg-gray-100 py-16" id="contact" style="margin-top: -40px;">
+    <section class="bg-gray-100 py-16" id="contact" style="margin-top: -100px;">
         <div class="container mx-auto px-4 max-w-2xl">
             <div class="section-divider"></div>
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-8">Contacto</h2>
@@ -378,6 +730,29 @@
     </footer>
 
     <script>
+        // Preloader
+        window.addEventListener('load', () => {
+            const preloader = document.querySelector('.preloader');
+            preloader.style.opacity = '0';
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 500);
+        });
+
+        // Scroll Top Button
+        const scrollBtn = document.querySelector('.scroll-top-btn');
+        window.addEventListener('scroll', () => {
+            scrollBtn.classList.toggle('show', window.scrollY > 500);
+        });
+
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+
         // Control del tema
         const themeToggle = document.getElementById('theme-toggle');
         const body = document.body;
@@ -399,25 +774,36 @@
         themeToggle.checked = savedTheme === 'dark';
         applyDarkMode(savedTheme === 'dark');
 
-        // Menú hamburguesa
+        // CONTROL DEL MENÚ 100% FUNCIONAL
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobile-menu');
-        const overlay = document.getElementById('overlay');
+        const overlay = document.createElement('div');
+        overlay.className = 'fixed inset-0 bg-black/50 z-50 hidden';
+        document.body.appendChild(overlay);
 
-        const toggleMenu = (e) => {
-            e.preventDefault();
-            hamburger.classList.toggle('hamburger-active');
-            mobileMenu.classList.toggle('translate-x-full');
+        const toggleMenu = () => {
+            mobileMenu.classList.toggle('menu-active');
             overlay.classList.toggle('hidden');
-            document.body.classList.toggle('overflow-hidden');
+            hamburger.classList.toggle('open');
+            document.body.classList.toggle('no-scroll');
         };
 
+        // Event listeners
         hamburger.addEventListener('click', toggleMenu);
-        closeBtn.addEventListener('click', toggleMenu);
         overlay.addEventListener('click', toggleMenu);
+        document.getElementById('close-menu').addEventListener('click', toggleMenu);
+
+        // Cerrar menú al hacer clic en enlaces
+        document.querySelectorAll('.menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (mobileMenu.classList.contains('menu-active')) {
+                    toggleMenu();
+                }
+            });
+        });
 
         // Observador de secciones activas
-        const sections = document.querySelectorAll('section');
+        const sections = document.querySelectorAll('section, main');
         const navLinks = document.querySelectorAll('.nav-desktop a, .menu a');
 
         const observerOptions = {
