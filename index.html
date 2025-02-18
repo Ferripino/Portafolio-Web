@@ -10,7 +10,844 @@
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://portafolio-web-ferripinos-projects.vercel.app/"><!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fabián Pelegrín | Desarrollador Front End Especializado en Landing Pages</title>
+    <meta name="description" content="Desarrollador Front End con experiencia en creación de Landing Pages de alto rendimiento y aplicaciones web modernas">
+    <meta name="keywords" content="desarrollador web, front end developer, landing pages, react developer, javascript, html5, css3, tailwind css">
+    <meta name="author" content="Fabián Pelegrín">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
     <meta property="og:url" content="https://portafolio-web-ferripinos-projects.vercel.app/">
+    <meta property="og:title" content="Fabián Pelegrín | Portfolio Profesional">
+    <meta property="og:description" content="Desarrollador Front End especializado en creación de experiencias web modernas y efectivas">
+    <meta property="og:image" content="https://portafolio-web-ferripinos-projects.vercel.app/assets/img/preview.jpeg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://portafolio-web-ferripinos-projects.vercel.app/">
+    <meta property="twitter:title" content="Fabián Pelegrín | Portfolio Profesional">
+    <meta property="twitter:description" content="Desarrollador Front End especializado en creación de experiencias web modernas y efectivas">
+    <meta property="twitter:image" content="https://portafolio-web-ferripinos-projects.vercel.app/assets/img/preview.jpeg">
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <!-- Agrega esto en el head -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+
+    <style>
+        :root {
+            --color-dark-1: #0f172a;
+            --color-dark-2: #1e293b;
+            --color-dark-3: #334155;
+            --color-accent: #1d4ed8;
+            --color-text-primary: #f8fafc;
+            --color-text-secondary: #94a3b8;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+         /* Preloader */
+         .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--color-dark-1);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--color-text-secondary);
+            border-top-color: var(--color-accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+         /* Botón Scroll Top */
+         .scroll-top-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--color-accent);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 100;
+        }
+
+        .scroll-top-btn.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-top-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--color-text-primary);
+        }
+
+        /* Botón CTA corregido */
+        .cta-btn {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            background: var(--color-accent);
+            color: white;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            border: 2px solid rgba(255,255,255,0.1);
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px -1px rgba(0,0,0,0.2);
+            background: #1a43b8;
+        }
+        .lazy-load {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .main-image {
+            filter: brightness(0.3);
+            z-index: -1;
+        }
+
+        /* Separadores de sección en tema claro */
+        .section-divider {
+            position: relative;
+            margin: 4rem 0;
+        }
+
+        .section-divider::after {
+            content: '';
+            position: absolute;
+            bottom: -3.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #cbd5e1, transparent);
+        }
+
+        .dark-mode .section-divider::after {
+            background: linear-gradient(90deg, transparent, #334155, transparent);
+        }
+
+        /* Efectos hover para tecnologías */
+        .tech-card {
+            transition: all 0.3s ease;
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .tech-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-mode .tech-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(29, 78, 216, 0.2);
+        }
+
+        /* Navegación desktop */
+        .nav-desktop a {
+            position: relative;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-desktop a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #fff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-desktop a:hover::after,
+        .nav-desktop a.active::after {
+            width: 100%;
+        }
+
+        .dark-mode .nav-desktop a::after {
+            background-color: var(--color-text-primary);
+        }
+
+        /* Tema oscuro */
+        .dark-mode {
+            background-color: var(--color-dark-1);
+            color: var(--color-text-primary);
+        }
+
+        .dark-mode .header {
+            background: linear-gradient(to right, var(--color-dark-2), var(--color-dark-3));
+            border-bottom: 1px solid var(--color-dark-3);
+        }
+
+        .dark-mode .menu {
+            background-color: var(--color-dark-2);
+            border-left: 1px solid var(--color-dark-3);
+        }
+
+        .dark-mode .menu a {
+            color: var(--color-text-primary);
+        }
+
+        .dark-mode .menu a:hover {
+            color: var(--color-accent);
+            background-color: var(--color-dark-3);
+        }
+
+        .dark-mode .tech-container {
+            background-color: var(--color-dark-2);
+        }
+
+        .dark-mode .tech-card {
+            background-color: var(--color-dark-1);
+            border: 2px solid var(--color-dark-3);
+        }
+
+        .dark-mode #contact {
+            background-color: var(--color-dark-2);
+        }
+
+        .dark-mode .contact-form {
+            background-color: var(--color-dark-1);
+            border: 2px solid var(--color-dark-3);
+        }
+
+        .dark-mode input,
+        .dark-mode textarea {
+            background-color: var(--color-dark-2);
+            color: var(--color-text-primary);
+            border: 2px solid var(--color-dark-3);
+        }
+
+        .dark-mode input:focus,
+        .dark-mode textarea:focus {
+            border-color: var(--color-accent);
+            box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.3);
+        }
+
+        .dark-mode footer {
+            background-color: var(--color-dark-2);
+            border-top: 2px solid var(--color-dark-3);
+        }
+
+        .dark-mode .close-menu {
+            color: var(--color-text-primary) !important;
+        }
+
+        /* Interruptor de tema */
+        .theme-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .theme-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #cbd5e1;
+            border-radius: 34px;
+            transition: .4s;
+        }
+
+        .theme-slider:before {
+            position: absolute;
+            content: "🌞";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: .4s;
+        }
+
+        input:checked + .theme-slider {
+            background-color: #1e293b;
+        }
+
+        input:checked + .theme-slider:before {
+            content: "🌙";
+            transform: translateX(26px);
+        }
+
+        input,textarea{
+            outline: none;
+        }
+
+        
+        /* MENÚ HAMBURGUESA FUNCIONAL */
+        .menu {
+            transform: translateX(100%);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(12px);
+            width: 75%;
+            max-width: 300px;
+            right: 0;
+            top: 0;
+            height: 100vh;
+            position: fixed;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.98) !important;
+        }
+
+        .menu-active {
+            transform: translateX(0) !important;
+        }
+
+        .dark-mode .menu {
+            background: rgba(30, 41, 59, 0.98) !important;
+        }
+
+        /* Animación del icono hamburguesa */
+        #hamburger.open span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        #hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+        #hamburger.open span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* Estilos de los enlaces */
+        .menu-links {
+            padding-top: 80px;
+        }
+        
+        .menu-links a {
+            padding: 1.25rem 2rem;
+            margin: 0.5rem 1rem;
+            display: block;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .menu-links a:hover {
+            background: rgba(0, 0, 0, 0.05);
+            transform: translateX(10px);
+        }
+
+        .dark-mode .menu-links a:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+         /* Menú Hamburguesa Mejorado */
+    .menu {
+        transform: translateX(100%);
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        backdrop-filter: blur(16px);
+        width: 85%;
+        max-width: 320px;
+        right: 0;
+        top: 0;
+        height: 100vh;
+        position: fixed;
+        z-index: 1000;
+        background: rgba(255, 255, 255, 0.95) !important;
+        box-shadow: -8px 0 32px rgba(0, 0, 0, 0.1);
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .dark-mode .menu {
+        background: rgba(15, 23, 42, 0.98) !important;
+        box-shadow: -8px 0 32px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Icono de cerrar mejorado */
+    #close-menu {
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        background: rgba(0, 0, 0, 0.05);
+    }
+
+    #close-menu:hover {
+        transform: rotate(90deg);
+        background: rgba(0, 0, 0, 0.1);
+    }
+
+    .dark-mode #close-menu {
+        background: rgba(255, 255, 255, 0.05);
+        color: white !important;
+    }
+
+    /* Enlaces del menú mejorados */
+    .menu-links {
+        padding-top: 4rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .menu-links a {
+        padding: 1.25rem 1.5rem;
+        margin: 0 0.5rem;
+        border-radius: 12px;
+        transition: all 0.4s ease;
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        color: #1e293b;
+        font-weight: 500;
+    }
+
+    .menu-links a::before {
+        content: '';
+        position: absolute;
+        left: -10px;
+        width: 4px;
+        height: 0%;
+        background: var(--color-accent);
+        border-radius: 4px;
+        transition: all 0.3s ease;
+    }
+
+    .menu-links a:hover {
+        background: rgba(29, 78, 216, 0.05);
+        transform: translateX(15px);
+        color: var(--color-accent);
+    }
+
+    .menu-links a:hover::before {
+        height: 60%;
+    }
+
+    .menu-links a.active {
+        background: rgba(29, 78, 216, 0.1);
+        color: var(--color-accent);
+    }
+
+    .dark-mode .menu-links a {
+        color: #f8fafc;
+    }
+
+    .dark-mode .menu-links a:hover {
+        background: rgba(29, 78, 216, 0.1);
+    }
+
+    /* Íconos de los enlaces */
+    .menu-links a svg {
+        width: 24px;
+        height: 24px;
+        stroke: currentColor;
+        flex-shrink: 0;
+    }
+
+    /* Animación de entrada escalonada */
+    .menu-active .menu-links a {
+        opacity: 0;
+        transform: translateX(30px);
+        animation: menuItemEnter 0.4s ease forwards;
+    }
+
+    @keyframes menuItemEnter {
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    .menu-links a:nth-child(1) { animation-delay: 0.1s; }
+    .menu-links a:nth-child(2) { animation-delay: 0.2s; }
+    .menu-links a:nth-child(3) { animation-delay: 0.3s; }
+
+    /* Optimización de transiciones */
+    .menu {
+        transform: translateX(100%);
+        transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                   opacity 0.3s linear;
+        will-change: transform, opacity;
+    }
+
+    /* Animación de ítems con requestAnimationFrame */
+    .menu-active .menu-links a {
+        opacity: 0;
+        transform: translateX(30px);
+        transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+
+    /* Mejor uso de composición GPU */
+    .menu-links a {
+        backface-visibility: hidden;
+        perspective: 1000px;
+        transform: translateZ(0);
+    }
+
+    /* Optimización de keyframes */
+    @keyframes smoothEntry {
+        0% {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    /* Timing preciso con delays escalonados */
+    .menu-active .menu-links a {
+        animation: smoothEntry 0.5s forwards;
+    }
+    .menu-links a:nth-child(1) { animation-delay: 0.15s; }
+    .menu-links a:nth-child(2) { animation-delay: 0.25s; }
+    .menu-links a:nth-child(3) { animation-delay: 0.35s; }
+
+    /* Mejor rendimiento en hover */
+    .menu-links a:hover {
+        transform: translateX(15px) translateZ(0);
+        transition-duration: 0.3s;
+    }
+    .menu-links a .material-icons {
+        font-size: 1.5rem;
+        width: 30px;
+        transition: all 0.3s ease;
+        color: var(--color-accent);
+    }
+
+    .dark-mode .menu-links a .material-icons {
+        color: #93c5fd;
+    }
+
+    .menu-links a:hover .material-icons {
+        transform: scale(1.1);
+        color: var(--color-accent);
+    }
+
+    /* Ajuste de alineación */
+    .menu-links a {
+        align-items: center;
+    
+    </style>
+</head>
+<body class="bg-gray-50 transition-colors duration-300">
+   <!-- Preloader -->
+   <div class="preloader">
+    <div class="spinner"></div>
+</div>
+
+<!-- Scroll to top -->
+<button class="scroll-top-btn" style="user-select: none;">
+    <svg viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
+</button>
+
+<!-- Overlay -->
+<div class="overlay hidden fixed inset-0 bg-black/50 z-40" id="overlay"></div>
+
+    <!-- Header -->
+    <header class="header bg-gradient-to-r from-blue-600 to-blue-800 text-white p-4 md:p-6 shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl md:text-4xl font-bold">Fabián Pelegrín</h1>
+            <div class="flex items-center gap-4">
+                <!-- Navegación Desktop -->
+                <nav class="nav-desktop hidden md:block">
+                    <ul class="flex space-x-6">
+                        <li><a href="#about" class="nav-link" style="user-select: none;">Sobre mí</a></li>
+                        <li><a href="#technologies" class="nav-link" style="user-select: none;">Tecnologías</a></li>
+                        <li><a href="#contact" class="nav-link" style="user-select: none;">Contacto</a></li>
+                    </ul>
+                </nav>
+                
+                <label class="theme-switch mr-2">
+                    <input type="checkbox" id="theme-toggle" class="absolute opacity-0">
+                    <span class="theme-slider"></span>
+                </label>
+                
+                <button id="hamburger" class="md:hidden p-2 space-y-1.5 group">
+                    <span class="block w-6 h-0.5 bg-white transition-transform duration-300"></span>
+                    <span class="block w-6 h-0.5 bg-white transition-opacity duration-300"></span>
+                    <span class="block w-6 h-0.5 bg-white transition-transform duration-300"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Menú Móvil Corregido -->
+    <div class="menu" id="mobile-menu">
+        <button id="close-menu" class="text-gray-600 dark:text-gray-200" style="user-select: none;">
+            <i class="material-icons-round">close</i>
+        </button>
+        <nav class="menu-links">
+            <a href="#about" class="text-gray-800 dark:text-white" style="user-select: none;">
+                <i class="material-icons-round">person</i>
+                Sobre mí
+            </a>
+            <a href="#technologies" class="text-gray-800 dark:text-white" style="user-select: none;">
+                <i class="material-icons-round">code</i>
+                Tecnologías
+            </a>
+            <a href="#contact" class="text-gray-800 dark:text-white" style="user-select: none;">
+                <i class="material-icons-round">mail</i>
+                Contacto
+            </a>
+        </nav>
+    </div>
+
+    <!-- Sección Principal -->
+    <main class="relative w-full h-screen flex items-center justify-center" id="about">
+        <img src="assets/img/image.png" alt="Background" class="absolute inset-0 w-full h-full object-cover main-image">
+        <div class="relative text-center z-1 px-4">
+            <h2 class="text-4xl md:text-5xl font-semibold text-white mb-6">Front End Developer</h2>
+            <p class="text-lg md:text-xl text-white max-w-2xl mx-auto leading-relaxed">
+                Especializado en crear experiencias digitales impactantes y funcionales
+            </p>
+            <a href="#contact" class="cta-btn" style="user-select: none;">Contáctame</a>
+        </div>
+        
+    </main>
+
+    <!-- Tecnologías -->
+    <section class="tech-container bg-white py-16" id="technologies">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Tecnologías que manejo</h2>
+            <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="tech-card flex flex-col items-center p-6 rounded-xl border bg-white">
+                    <img src="assets/img/html5.svg" alt="HTML5" class="mb-3 w-20 h-20">
+                    <span class="font-medium">HTML5</span>
+                </div>
+                <div class="tech-card flex flex-col items-center p-6 rounded-xl border bg-white">
+                    <img src="assets/img/css3.svg" alt="CSS3" class="mb-3 w-20 h-20">
+                    <span class="font-medium">CSS3</span>
+                </div>
+                <div class="tech-card flex flex-col items-center p-6 rounded-xl border bg-white">
+                    <img src="assets/img/javascript.svg" alt="JavaScript" class="mb-3 w-20 h-20">
+                    <span class="font-medium">JavaScript</span>
+                </div>
+                <div class="tech-card flex flex-col items-center p-6 rounded-xl border bg-white">
+                    <img src="assets/img/react-wordmark.svg" alt="React" class="mb-3 w-20 h-20">
+                    <span class="font-medium">React</span>
+                </div>
+                
+                <div class="tech-card flex flex-col items-center p-6 rounded-xl border bg-white">
+                    <img src="assets/img/github-dark.svg" alt="GitHub" class="mb-3 w-20 h-20">
+                    <span class="font-medium">Git y GitHub</span>
+                </div>
+                <div class="tech-card flex flex-col items-center p-6 rounded-xl border bg-white">
+                    <img src="assets/img/tailwindcss-dark.svg" alt="Tailwind CSS" class="mb-3 w-20 h-20">
+                    <span class="font-medium">Tailwind CSS</span>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section class="bg-gray-100 py-16" id="contact" style="margin-top: -50px;">
+        <div class="container mx-auto px-4 max-w-2xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8">Contacto</h2>
+            <form action="https://formsubmit.co/fpelegrincardoso@gmail.com" method="POST" 
+                class="contact-form bg-white p-8 rounded-2xl shadow-lg" autocomplete="off">
+                <div class="space-y-6">
+                    <input type="text" name="name" placeholder="Nombre" required 
+                        class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500" autocomplete="off" autocorrect="off">
+                    <input type="email" name="email" placeholder="Email" required 
+                        class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500" autocomplete="off" autocorrect="off">
+                    <textarea name="message" rows="5" placeholder="Mensaje" required 
+                        class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500" autocomplete="off" autocorrect="off" style="min-height: 150px; max-height: 250px;"></textarea>
+                    <button type="submit" 
+                        class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors" style="user-select: none;">
+                        Enviar mensaje
+                    </button>
+                </div>
+                <input type="hidden" name="_next" value="https://portafolio-web-ferripinos-projects.vercel.app/">
+                <input type="hidden" name="_captcha" value="false">
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-800 text-white py-12">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-2xl font-bold mb-8">Conectemos</h2>
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="https://wa.me/+5356253084" target="_blank" class="p-2 hover:opacity-75 transition-opacity" style="user-select: none;">
+                    <img src="assets/img/whatsapp.svg" alt="WhatsApp" class="w-8 h-8">
+                </a>
+                <a href="https://github.com/Ferripino" target="_blank" class="p-2 hover:opacity-75 transition-opacity" style="user-select: none;">
+                    <img src="assets/img/github-dark.svg" alt="GitHub" class="w-8 h-8 dark:hidden">
+                    <img src="assets/img/github-light.svg" alt="GitHub" class="w-8 h-8 hidden dark:block">
+                </a>
+                <a href="https://t.me/ElFerri09" target="_blank" class="p-2 hover:opacity-75 transition-opacity" style="user-select: none;">
+                    <img src="assets/img/telegram.svg" alt="Telegram" class="w-8 h-8">
+                </a>
+            </div>
+            <p class="footer-credits">
+                © 2024 Fabián Pelegrín. Todos los derechos reservados<br>
+                Creado con HTML5, CSS3, Tailwind CSS y JavaScript
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Preloader
+        window.addEventListener('load', () => {
+            const preloader = document.querySelector('.preloader');
+            preloader.style.opacity = '0';
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 500);
+        });
+
+        // Scroll Top Button
+        const scrollBtn = document.querySelector('.scroll-top-btn');
+        window.addEventListener('scroll', () => {
+            scrollBtn.classList.toggle('show', window.scrollY > 500);
+        });
+
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+
+        // Control del tema
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        const closeBtn = document.getElementById('close-menu');
+
+        const applyDarkMode = (isDark) => {
+            body.classList.toggle('dark-mode', isDark);
+            closeBtn.style.color = isDark ? '#f8fafc' : '#1e293b';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        };
+
+        themeToggle.addEventListener('change', (e) => {
+            e.preventDefault();
+            applyDarkMode(e.target.checked);
+        });
+
+        // Cargar tema guardado
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        themeToggle.checked = savedTheme === 'dark';
+        applyDarkMode(savedTheme === 'dark');
+
+        // CONTROL DEL MENÚ 100% FUNCIONAL
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const overlay = document.createElement('div');
+        overlay.className = 'fixed inset-0 bg-black/50 z-50 hidden';
+        document.body.appendChild(overlay);
+
+        const toggleMenu = () => {
+            mobileMenu.classList.toggle('menu-active');
+            overlay.classList.toggle('hidden');
+            hamburger.classList.toggle('open');
+            document.body.classList.toggle('no-scroll');
+        };
+
+        // Event listeners
+        hamburger.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+        document.getElementById('close-menu').addEventListener('click', toggleMenu);
+
+        // Cerrar menú al hacer clic en enlaces
+        document.querySelectorAll('.menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (mobileMenu.classList.contains('menu-active')) {
+                    toggleMenu();
+                }
+            });
+        });
+
+        // Observador de secciones activas
+        const sections = document.querySelectorAll('section, main');
+        const navLinks = document.querySelectorAll('.nav-desktop a, .menu a');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.5
+        };
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if(link.getAttribute('href') === `#${entry.target.id}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => sectionObserver.observe(section));
+
+        // Prevenir scroll al cambiar tema
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
     <meta property="og:title" content="Fabián Pelegrín | Portfolio Profesional">
     <meta property="og:description" content="Desarrollador Front End especializado en creación de experiencias web modernas y efectivas">
     <meta property="og:image" content="https://portafolio-web-ferripinos-projects.vercel.app/assets/img/preview.jpeg">
