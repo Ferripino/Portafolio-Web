@@ -721,7 +721,7 @@
                     <img src="assets/img/telegram.svg" alt="Telegram" class="w-8 h-8">
                 </a>
             </div>
-            <p class="footer-credits">
+            <p class="footer-credits" style="font-size: 14.5px;">
                 © 2024 Fabián Pelegrín. Todos los derechos reservados<br>
                 Creado con HTML5, CSS3, Tailwind CSS y JavaScript
             </p>
@@ -862,7 +862,7 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e =
         submitBtn.disabled = true;
         const loader = Swal.fire({
             title: 'Enviando mensaje...',
-            html: 'Por favor espera unos momentos',
+            html: 'Por favor, espere un momento',
             allowOutsideClick: false,
             didOpen: () => {
                 Swal.showLoading();
@@ -903,7 +903,22 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e =
             submitBtn.disabled = false;
         }
     });
+    // Modificar el evento del tema toggle
+    themeToggle.addEventListener('change', (e) => {
+        e.preventDefault();
+        applyDarkMode(e.target.checked);
+        
+        // Guardar preferencia en localStorage
+        localStorage.setItem('theme', e.target.checked ? 'dark' : 'light');
+    });
 
+    // Añadir esto para prevenir el scroll en el evento click
+    document.querySelector('.theme-switch').addEventListener('click', (e) => {
+        e.preventDefault();
+        themeToggle.checked = !themeToggle.checked;
+        applyDarkMode(themeToggle.checked);
+        localStorage.setItem('theme', themeToggle.checked ? 'dark' : 'light');
+    });
     
     </script>
 </body>
