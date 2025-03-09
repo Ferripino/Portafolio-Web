@@ -25,7 +25,8 @@
 
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
-    <!-- Agrega esto en el head -->
+
+    <!-- Carga de librerias de terceros -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
 
@@ -568,6 +569,149 @@
         align-items: center;
         }
     
+        /* Portfolio Section Styles */
+    .portfolio-section {
+        padding: 4rem 0;
+        background-color: #f8fafc;
+    }
+
+    .dark-mode .portfolio-section {
+        background-color: var(--color-dark-1);
+    }
+
+    .portfolio-card {
+        background: white;
+        border-radius: 1rem;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        border: 1px solid #e2e8f0;
+    }
+
+    .dark-mode .portfolio-card {
+        background: var(--color-dark-2);
+        border-color: var(--color-dark-3);
+    }
+
+    .portfolio-image {
+        height: 250px;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .portfolio-image::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(0,0,0,0) 60%, rgba(0,0,0,0.8) 100%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .portfolio-card:hover .portfolio-image::after {
+        opacity: 1;
+    }
+
+    .portfolio-content {
+        padding: 1.5rem;
+    }
+
+    .portfolio-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--color-dark-1);
+    }
+
+    .dark-mode .portfolio-title {
+        color: var(--color-text-primary);
+    }
+
+    .portfolio-description {
+        color: #64748b;
+        margin-bottom: 1rem;
+    }
+
+    .dark-mode .portfolio-description {
+        color: var(--color-text-secondary);
+    }
+
+    .portfolio-tech {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+    }
+
+    .tech-badge {
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        background: #e2e8f0;
+        color: #1e293b;
+    }
+
+    .dark-mode .tech-badge {
+        background: var(--color-dark-3);
+        color: var(--color-text-primary);
+    }
+
+    .portfolio-subtitle {
+        color: #64748b; /* Color claro original */
+        transition: color 0.3s ease;
+    }
+    
+    .dark-mode .portfolio-subtitle {
+        color: #94a3b8 !important; /* Color oscuro con !important para prioridad */
+    }
+
+    /* Flecha de scroll down */
+.scroll-down-btn {
+    position: absolute;
+    bottom: 105px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 50px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(29, 78, 216, 0.2);
+    backdrop-filter: blur(4px);
+    animation: bounce 2s infinite;
+}
+
+.scroll-down-btn:hover {
+    background: rgba(29, 78, 216, 0.4);
+    transform: translateX(-50%) scale(1.1);
+}
+
+.scroll-down-btn .material-icons-round {
+    color: white;
+    font-size: 2rem;
+    margin-top: 4px;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+    40% { transform: translateY(-20px) translateX(-50%); }
+    60% { transform: translateY(-10px) translateX(-50%); }
+}
+
+.dark-mode .scroll-down-btn {
+    border-color: rgba(255,255,255,0.2);
+    background: rgba(15, 23, 42, 0.3);
+}
+
+.dark-mode .scroll-down-btn:hover {
+    background: rgba(15, 23, 42, 0.5);
+}
+
     </style>
 </head>
 <body class="bg-gray-50 transition-colors duration-300">
@@ -594,7 +738,9 @@
                     <ul class="flex space-x-6">
                         <li><a href="#about" class="nav-link" style="user-select: none;">Sobre mí</a></li>
                         <li><a href="#technologies" class="nav-link" style="user-select: none;">Tecnologías</a></li>
+                        <li><a href="#portfolio" class="nav-link" style="user-select: none;">Portfolio</a></li>
                         <li><a href="#contact" class="nav-link" style="user-select: none;">Contacto</a></li>
+                        
                     </ul>
                 </nav>
                 
@@ -630,21 +776,29 @@
                 <i class="material-icons-round">mail</i>
                 Contacto
             </a>
+            <a href="#portfolio" class="text-gray-800 dark:text-white" style="user-select: none;">
+                <i class="material-icons-round">work</i>
+                Portafolio
+            </a>
         </nav>
     </div>
 
-    <!-- Sección Principal -->
-    <main class="relative w-full h-screen flex items-center justify-center" id="about">
-        <img src="assets/img/image.png" alt="Background" class="absolute inset-0 w-full h-full object-cover main-image">
-        <div class="relative text-center z-1 px-4">
-            <h2 class="text-4xl md:text-5xl font-semibold text-white mb-6">Front End Developer</h2>
-            <p class="text-lg md:text-xl text-white max-w-2xl mx-auto leading-relaxed">
-                Especializado en crear experiencias digitales impactantes y funcionales
-            </p>
-            <a href="#contact" class="cta-btn" style="user-select: none;">Contáctame</a>
-        </div>
-        
-    </main>
+        <!-- Sección Principal -->
+        <main class="relative w-full h-screen flex items-center justify-center" id="about">
+            <img src="assets/img/image.png" alt="Background" class="absolute inset-0 w-full h-full object-cover main-image">
+            <div class="relative text-center z-1 px-4">
+                <h2 class="text-4xl md:text-5xl font-semibold text-white mb-6">Front End Developer</h2>
+                <p class="text-lg md:text-xl text-white max-w-2xl mx-auto leading-relaxed">
+                    Especializado en crear experiencias digitales impactantes y funcionales
+                </p>
+                <a href="#contact" class="cta-btn" style="user-select: none;">Contáctame</a>
+            </div>
+            
+            <!-- Botón Flecha Scroll Down -->
+            <button class="scroll-down-btn" onclick="scrollToSection('technologies')">
+                <i class="material-icons-round">keyboard_arrow_down</i>
+            </button>
+        </main>
 
     <!-- Tecnologías -->
     <section class="tech-container bg-white py-16" id="technologies">
@@ -681,8 +835,36 @@
         </div>
     </section>
 
+    <!-- Portafolio -->
+<section class="portfolio-section" id="portfolio">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold">Mi Portafolio</h2>
+            <p class="portfolio-subtitle mt-4 max-w-2xl mx-auto leading-relaxed">
+                Algunos de mis proyectos más recientes donde he aplicado mis habilidades front-end
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Project 1 -->
+            <div class="portfolio-card">
+                <div class="portfolio-image" style="background-image: url('assets/img/project1.jpeg')"></div>
+                <div class="portfolio-content">
+                    <h3 class="portfolio-title">Landing Page - Desarrollo de apps para empresas</h3>
+                    <p class="portfolio-description">Diseño moderno y optimizado. Proyecto realizado con el fin de mejorar mis habilidades</p>
+                    <div class="portfolio-tech">
+                        <span class="tech-badge">HTML</span>
+                        <span class="tech-badge">CSS</span>
+                        <span class="tech-badge">JavaScript</span>
+                        <span class="tech-badge">Bootstrap</span>
+                    </div>
+                    <a href="Proyecto 1/index.html" target="_blank" class="cta-btn w-full text-center block">Ver Proyecto</a>
+                </div>
+            </div>
+</section>
+
     <!-- Contacto -->
-    <section class="bg-gray-100 py-16" id="contact" style="margin-top: -50px;">
+    <section class="bg-gray-100 py-16" id="contact" >
         <div class="container mx-auto px-4 max-w-2xl">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-8">Contacto</h2>
             <form action="https://formsubmit.co/fpelegrincardoso@gmail.com" method="POST" 
@@ -721,8 +903,8 @@
                     <img src="assets/img/telegram.svg" alt="Telegram" class="w-8 h-8">
                 </a>
             </div>
-            <p class="footer-credits" style="font-size: 14.5px;">
-                © 2024 Fabián Pelegrín. Todos los derechos reservados<br>
+            <p class="footer-credits" style="font-size: 13px;">
+                © 2025 Fabián Pelegrín. Todos los derechos reservados<br>
                 Creado con HTML5, CSS3, Tailwind CSS y JavaScript
             </p>
         </div>
@@ -920,6 +1102,13 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e =
         localStorage.setItem('theme', themeToggle.checked ? 'dark' : 'light');
     });
     
+
+    // Función para scroll a sección
+function scrollToSection(sectionId) {
+    document.getElementById(sectionId).scrollIntoView({
+        behavior: 'smooth'
+    });
+}
     </script>
 </body>
 </html>
