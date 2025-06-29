@@ -737,6 +737,49 @@
     padding: 0.75rem 1rem;
 }
 
+    .neon-btn {
+    /* Mantén todos los estilos existentes */
+    position: relative;
+    display: inline-block;
+    padding: 1rem 3rem;
+    margin-top: 2rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    overflow: hidden;
+    transition: 0.5s;
+    border-radius: 50px;
+    
+    /* Cambia estos estilos para que sean los del hover por defecto */
+    background: var(--color-accent);
+    box-shadow: 0 0 20px var(--color-accent),
+                0 0 40px var(--color-accent),
+                0 0 80px var(--color-accent);
+}
+
+.neon-btn:hover {
+    /* Opcional: puedes agregar un efecto adicional al hover */
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 0 30px var(--color-accent),
+                0 0 60px var(--color-accent),
+                0 0 100px var(--color-accent);
+}
+
+/* Ajustes para modo oscuro */
+.dark-mode .neon-btn {
+    box-shadow: 0 0 20px var(--color-accent),
+                0 0 40px var(--color-accent),
+                0 0 80px var(--color-accent);
+}
+
+.dark-mode .neon-btn:hover {
+    box-shadow: 0 0 30px var(--color-accent),
+                0 0 60px var(--color-accent),
+                0 0 100px var(--color-accent);
+}   
+
     </style>
 </head>
 <body class="bg-gray-50 transition-colors duration-300">
@@ -809,21 +852,23 @@
     </div>
 
         <!-- Sección Principal -->
-        <main class="relative w-full h-screen flex items-center justify-center" id="about">
-            <img src="assets/img/image.png" alt="Background" class="absolute inset-0 w-full h-full object-cover main-image">
-            <div class="relative text-center z-1 px-4">
-                <h2 class="text-4xl md:text-5xl font-semibold text-white mb-6">Front End Developer</h2>
-                <p class="text-lg md:text-xl text-white max-w-2xl mx-auto leading-relaxed">
-                    Especializado en crear experiencias digitales impactantes y funcionales
-                </p>
-                <a href="#contact" class="cta-btn" style="user-select: none;">Contáctame</a>
-            </div>
-            
-            <!-- Botón Flecha Scroll Down -->
-            <button class="scroll-down-btn" onclick="scrollToSection('technologies')">
-                <i class="material-icons-round">keyboard_arrow_down</i>
-            </button>
-        </main>
+<main class="relative w-full h-screen flex items-center justify-center" id="about">
+    <img src="assets/img/image.png" alt="Background" class="absolute inset-0 w-full h-full object-cover main-image">
+    <div class="relative text-center z-1 px-4 max-w-4xl mx-auto">
+        <h2 class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">Desarrollador Front End</h2>
+        <p class="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed mb-10">
+            Especializado en crear experiencias digitales impactantes y funcionales
+        </p>
+        <a href="#contact" class="cta-btn neon-btn mx-auto" style="user-select: none;">
+            <span class="neon-text">Contáctame</span>
+        </a>
+    </div>
+    
+    <!-- Botón Flecha Scroll Down -->
+    <button class="scroll-down-btn" onclick="scrollToSection('technologies')">
+        <i class="material-icons-round">keyboard_arrow_down</i>
+    </button>
+</main
 
     <!-- Tecnologías -->
     <section class="tech-container bg-white py-16" id="technologies">
