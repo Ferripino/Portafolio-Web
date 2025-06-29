@@ -712,6 +712,31 @@
     background: rgba(15, 23, 42, 0.5);
 }
 
+.portfolio-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Asegura que todas las tarjetas tengan la misma altura */
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.portfolio-content {
+    flex: 1; /* Hace que el contenido ocupe el espacio restante */
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+}
+
+.portfolio-tech {
+    margin: 1rem 0;
+}
+
+.cta-btn {
+    margin-top: auto; /* Empuja el botón hacia abajo */
+    padding: 0.75rem 1rem;
+}
+
     </style>
 </head>
 <body class="bg-gray-50 transition-colors duration-300">
@@ -866,8 +891,8 @@
             <div class="portfolio-card">
                 <div class="portfolio-image" style="background-image: url('assets/img/project2.jpeg')"></div>
                 <div class="portfolio-content">
-                    <h3 class="portfolio-title">IRS EIN/Tax ID Application Platform</h3>
-                    <p class="portfolio-description">Solución digital especializada en la gestión de identificaciones fiscales estadounidenses (EIN/Tax ID) para entidades comerciales y patrimoniales. Desarrollé una plataforma intuitiva que guía a usuarios internacionales en el proceso complejo de solicitud ante el IRS</p>
+                    <h3 class="portfolio-title">TIN-IRS – Soluciones Fiscales para Empresas y Particulares</h3>
+                    <p class="portfolio-description">Página web profesional para ITIN-IRS, especializada en asesoría fiscal, trámites de ITIN y optimización de impuestos. Diseño limpio y funcional, con enfoque en conversión y experiencia de usuario, disponible en inglés y español.</p>
                     <div class="portfolio-tech">
                         <span class="tech-badge">HTML</span>
                         <span class="tech-badge">CSS</span>
