@@ -284,30 +284,7 @@
             transition: .4s;
         }
 
-        .theme-slider:before {
-            position: absolute;
-            content: "🌞";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            transition: .4s;
-        }
-
-        input:checked + .theme-slider {
-            background-color: #1e293b;
-        }
-
-        input:checked + .theme-slider:before {
-            content: "🌙";
-            transform: translateX(26px);
-        }
+        
 
         input,textarea{
             outline: none;
@@ -790,7 +767,417 @@
 #about p {
     color: rgba(255, 255, 255, 0.9) !important; /* Blanco con 90% opacidad */
 }
+/* Tema Switch con Material Icons */
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
 
+.theme-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #cbd5e1;
+    border-radius: 34px;
+    transition: .4s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8px;
+}
+
+.theme-slider .sun-icon,
+.theme-slider .moon-icon {
+    font-size: 18px;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.theme-slider .sun-icon {
+    opacity: 1;
+    color: #f59e0b; /* Amarillo/naranja para el sol */
+}
+
+.theme-slider .moon-icon {
+    opacity: 0;
+    color: #94a3b8; /* Gris claro para la luna */
+}
+
+/* Cambios cuando está en modo oscuro (checkbox activado) */
+input:checked + .theme-slider {
+    background-color: #1e293b;
+}
+
+input:checked + .theme-slider .sun-icon {
+    opacity: 0;
+}
+
+input:checked + .theme-slider .moon-icon {
+    opacity: 1;
+    color: #e2e8f0; /* Blanco para la luna en modo oscuro */
+}
+/* === Tema Switch con Animación Smooth === */
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.theme-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #cbd5e1; /* Fondo en modo claro */
+    border-radius: 34px;
+    transition: all 0.4s ease;
+    overflow: hidden; /* Para ocultar los íconos que salen del contenedor */
+}
+
+.theme-slider .icons-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.theme-slider .sun-icon,
+.theme-slider .moon-icon {
+    position: absolute;
+    font-size: 18px;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Animación elástica */
+}
+
+/* Posición inicial del sol (centrado en modo claro) */
+.theme-slider .sun-icon {
+    left: 50%;
+    transform: translateX(-50%);
+    color: #f59e0b; /* Color amarillo/naranja */
+}
+
+/* Posición inicial de la luna (fuera de vista en modo claro) */
+.theme-slider .moon-icon {
+    left: 100%; /* Fuera del interruptor */
+    transform: translateX(0);
+    color: #94a3b8; /* Gris claro */
+}
+
+/* === Cuando el interruptor está activado (modo oscuro) === */
+input:checked + .theme-slider {
+    background-color: #1e293b; /* Fondo oscuro */
+}
+
+/* Animación del sol (se mueve a la izquierda y desaparece) */
+input:checked + .theme-slider .sun-icon {
+    left: 0;
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+/* Animación de la luna (entra desde la derecha al centro) */
+input:checked + .theme-slider .moon-icon {
+    left: 50%;
+    transform: translateX(-50%);
+    color: #e2e8f0; /* Blanco en modo oscuro */
+}
+/* Reset completo del switch anterior */
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    --icon-size: 20px;
+}
+
+.theme-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #cbd5e1;
+    border-radius: 34px;
+    transition: background-color 0.4s;
+    overflow: hidden;
+}
+
+.icon-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.sun-icon, .moon-icon {
+    position: absolute;
+    font-size: var(--icon-size);
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), 
+                opacity 0.3s ease;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.sun-icon {
+    left: 20px;
+    color: #f59e0b;
+    opacity: 1;
+}
+
+.moon-icon {
+    right: -20px;
+    color: #64748b;
+    opacity: 0;
+}
+
+/* Estado activo (modo oscuro) */
+input:checked + .theme-slider {
+    background-color: #1e293b;
+}
+
+input:checked + .theme-slider .sun-icon {
+    transform: translate(-40px, -50%);
+    opacity: 0;
+}
+
+input:checked + .theme-slider .moon-icon {
+    transform: translate(-30px, -50%);
+    opacity: 1;
+    color: #e2e8f0;
+}
+.theme-switch {
+    --size: 2rem;
+    --padding: 0.25rem;
+    position: relative;
+    display: inline-block;
+    width: calc(var(--size) * 2 + var(--padding) * 2);
+    height: calc(var(--size) + var(--padding) * 2);
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #e2e8f0;
+    border-radius: 100px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+    display: flex;
+    align-items: center;
+    padding: var(--padding);
+}
+
+.light-icon, .dark-icon {
+    position: absolute;
+    font-size: calc(var(--size) - 0.5rem);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.light-icon {
+    color: #f59e0b;
+    left: var(--padding);
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.dark-icon {
+    color: #94a3b8;
+    right: var(--padding);
+    opacity: 0;
+    transform: translateX(10px);
+}
+
+input:checked + .slider {
+    background-color: #334155;
+}
+
+input:checked + .slider .light-icon {
+    opacity: 0;
+    transform: translateX(-10px);
+}
+
+input:checked + .slider .dark-icon {
+    opacity: 1;
+    transform: translateX(0);
+    color: #e2e8f0;
+}
+.theme-switch {
+    --size: 2.5rem;  /* Aumenté el tamaño para mejor visibilidad */
+    --padding: 0.3rem;
+    position: relative;
+    display: inline-block;
+    width: calc(var(--size) * 2);
+    height: var(--size);
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #e2e8f0;
+    border-radius: 100px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+    display: flex;
+    align-items: center;
+    padding: var(--padding);
+}
+
+.light-icon, .dark-icon {
+    position: absolute;
+    font-size: calc(var(--size) - 0.8rem);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(var(--size) - 0.8rem);
+    height: calc(var(--size) - 0.8rem);
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.light-icon {
+    color: #FFD700;  /* Amarillo brillante */
+    left: var(--padding);
+    opacity: 1;
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.7);  /* Efecto brillo */
+    filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.5));
+}
+
+.dark-icon {
+    color: #e2e8f0;
+    right: var(--padding);
+    opacity: 0;
+}
+
+input:checked + .slider {
+    background-color: #334155;
+}
+
+input:checked + .slider .light-icon {
+    opacity: 0;
+    transform: translate(-20px, -50%);
+}
+
+input:checked + .slider .dark-icon {
+    opacity: 1;
+    transform: translate(0, -50%);
+}
+.light-icon {
+    animation: sun-pulse 2s infinite alternate;
+}
+
+@keyframes sun-pulse {
+    from {
+        text-shadow: 0 0 8px rgba(255, 215, 0, 0.7);
+    }
+    to {
+        text-shadow: 0 0 12px rgba(255, 215, 0, 0.9);
+    }
+}
+.theme-switch {
+    --width: 60px;
+    --height: 30px;
+    --padding: 2px;
+    position: relative;
+    display: inline-block;
+    width: var(--width);
+    height: var(--height);
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #357cc4; /* Fondo claro */
+    border-radius: 34px;
+    transition: .4s;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.icon {
+    position: absolute;
+    font-size: 18px;
+    transition: .4s;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.sun-icon {
+    left: 6px;
+    color: #f5a623; /* Amarillo más suave */
+    opacity: 1;
+}
+
+.moon-icon {
+    right: 6px;
+    color: #06111d;
+    opacity: 0;
+}
+
+/* Cuando está activado (modo oscuro) */
+input:checked + .slider {
+    background-color: #081e38; /* Fondo oscuro */
+}
+
+input:checked + .slider .sun-icon {
+    opacity: 0;
+    transform: translateX(-20px) translateY(-50%);
+}
+
+input:checked + .slider .moon-icon {
+    opacity: 1;
+    transform: translateX(0) translateY(-50%);
+}
+
+/* Círculo deslizante */
+.slider:before {
+    content: "";
+    position: absolute;
+    height: calc(var(--height) - var(--padding)*2);
+    width: calc(var(--height) - var(--padding)*2);
+    left: var(--padding);
+    bottom: var(--padding);
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 50%;
+    transition: .4s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+input:checked + .slider:before {
+    transform: translateX(calc(var(--width) - var(--height)));
+}
     </style>
 </head>
 <body class="bg-gray-50 transition-colors duration-300">
@@ -823,10 +1210,13 @@
                     </ul>
                 </nav>
                 
-                <label class="theme-switch mr-2">
-                    <input type="checkbox" id="theme-toggle" class="absolute opacity-0">
-                    <span class="theme-slider"></span>
-                </label>
+                <label class="theme-switch">
+    <input type="checkbox" id="theme-toggle">
+    <span class="slider">
+        <i class="material-icons-round light-icon">wb_sunny</i>
+        <i class="material-icons-round dark-icon">dark_mode</i>
+    </span>
+</label>
                 
                 <button id="hamburger" class="md:hidden p-2 space-y-1.5 group">
                     <span class="block w-6 h-0.5 bg-white transition-transform duration-300"></span>
