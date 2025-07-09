@@ -1178,6 +1178,118 @@ input:checked + .slider .moon-icon {
 input:checked + .slider:before {
     transform: translateX(calc(var(--width) - var(--height)));
 }
+
+/* ===== SOLUCIÓN COMPLETA PARA EL OUTLINE AZUL ===== */
+/* Elimina todos los outlines no deseados */
+button:focus,
+span:focus,
+a:focus,
+input:focus,
+textarea:focus,
+select:focus,
+[role="button"]:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Estilo para focus-visible (accesibilidad con teclado) */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+span:focus-visible,
+[role="button"]:focus-visible {
+    outline: 2px solid var(--color-accent) !important;
+    outline-offset: 3px !important;
+    border-radius: 4px !important;
+    box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.2) !important;
+}
+
+/* Elimina el efecto azul en móviles */
+@media (hover: none) {
+    button:active,
+    a:active,
+    input:active,
+    textarea:active
+    span:active {
+        -webkit-tap-highlight-color: transparent !important;
+    }
+}
+
+/* Elimina el resaltado nativo en Safari */
+button,
+a,
+input,
+textarea {
+    -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Estilos específicos para el toggle de tema */
+.theme-switch input[type="checkbox"] {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    outline: none !important;
+}
+
+.theme-switch input[type="checkbox"]:focus-visible + .slider {
+    outline: 2px solid var(--color-accent) !important;
+    outline-offset: 2px !important;
+    border-radius: 34px !important;
+}
+
+/* Eliminar el borde azul en móviles */
+.theme-switch input[type="checkbox"]:active + .slider,
+.theme-switch input[type="checkbox"]:focus:not(:focus-visible) + .slider {
+    outline: none !important;
+    box-shadow: none !important;
+}
+.theme-switch input[type="checkbox"]:focus {
+    box-shadow: none !important;
+    outline: 0 !important;
+    --tw-ring-color: transparent !important;
+}
+
+/* Elimina TODOS los outlines no deseados en TODOS los navegadores */
+button:focus,
+a:focus,
+input:focus,
+textarea:focus,
+select:focus,
+[type="checkbox"]:focus,
+[type="radio"]:focus,
+[role="button"]:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Estilos de accesibilidad SOLO para navegación con teclado */
+:focus-visible {
+    outline: 2px solid var(--color-accent) !important;
+    outline-offset: 3px !important;
+    border-radius: 0.25rem !important;
+}
+
+/* Elimina específicamente el highlight en móviles */
+@media (hover: none) {
+    *:active {
+        -webkit-tap-highlight-color: transparent !important;
+    }
+}
+
+/* Estilo específico para el toggle de tema */
+.theme-switch input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    position: absolute;
+}
+
+.theme-switch .slider {
+    -webkit-tap-highlight-color: transparent;
+}
     </style>
 </head>
 <body class="bg-gray-50 transition-colors duration-300">
@@ -1211,7 +1323,7 @@ input:checked + .slider:before {
                 </nav>
                 
                 <label class="theme-switch">
-    <input type="checkbox" id="theme-toggle">
+    <input type="checkbox" id="theme-toggle" aria-label="Cambiar tema">
     <span class="slider">
         <i class="material-icons-round light-icon">wb_sunny</i>
         <i class="material-icons-round dark-icon">dark_mode</i>
@@ -1596,6 +1708,31 @@ function scrollToSection(sectionId) {
         behavior: 'smooth'
     });
 }
+
+// Manejar estilos de focus para accesibilidad
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Tab') {
+        document.body.classList.add('user-is-tabbing');
+    }
+});
+
+document.addEventListener('mousedown', function() {
+    document.body.classList.remove('user-is-tabbing');
+});
+
+// Polyfill para :focus-visible en navegadores antiguos
+document.addEventListener('DOMContentLoaded', function() {
+    try {
+        // Intenta cargar el polyfill dinámicamente
+        const focusVisibleScript = document.createElement('script');
+        focusVisibleScript.src = 'https://unpkg.com/focus-visible@5.2.0/dist/focus-visible.min.js';
+        document.head.appendChild(focusVisibleScript);
+    } catch (e) {
+        console.log('Error loading focus-visible polyfill:', e);
+    }
+});
+
+
     </script>
 </body>
 </html>
