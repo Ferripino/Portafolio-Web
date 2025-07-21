@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2x3 Webs - Diseño Web Profesional en Cuba 🇨🇺</title>
+    
+    <!-- Meta tags -->
+    <meta name="description" content="2x3 Webs - Diseño web profesional en Cuba. Sitios web únicos, modernos y responsivos para empresas cubanas. Especialistas en desarrollo web con tecnología de vanguardia.">
+    <meta name="keywords" content="diseño web cuba, desarrollo web habana, sitios web cuba, 2x3 webs, páginas web profesionales">
+    <meta name="author" content="2x3 Webs">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://2x3webs.com/">
+    <meta property="og:title" content="2x3 Webs - Diseño Web Profesional en Cuba">
+    <meta property="og:description" content="Creamos sitios web únicos y modernos para empresas cubanas. Tecnología de vanguardia adaptada al mercado local.">
+    <meta property="og:image" content="./images/hero-web-design.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/public/favicon.png">
+    <link rel="apple-touch-icon" href="/public/favicon.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'neon-cyan': '#22d3ee',
+                        'neon-blue': '#3b82f6',
+                        'neon-purple': '#a855f7',
+                        'neon-green': '#22c55e',
+                    },
+                    animation: {
+                        'pulse-neon': 'pulse-neon 2s ease-in-out infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                        'gradient-shift': 'gradient-shift 3s ease infinite',
+                        'float-particle': 'float-particle 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        'pulse-neon': {
+                            '0%, 100%': { 
+                                boxShadow: '0 0 5px #22d3ee, 0 0 10px #22d3ee, 0 0 15px #22d3ee' 
+                            },
+                            '50%': { 
+                                boxShadow: '0 0 10px #22d3ee, 0 0 20px #22d3ee, 0 0 30px #22d3ee' 
+                            }
+                        },
+                        'float': {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        },
+                        'gradient-shift': {
+                            '0%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                            '100%': { backgroundPosition: '0% 50%' }
+                        },
+                        'float-particle': {
+                            '0%, 100%': { 
+                                transform: 'translateY(0px) translateX(0px)', 
+                                opacity: '0' 
+                            },
+                            '10%': { opacity: '1' },
+                            '90%': { opacity: '1' },
+                            '100%': { 
+                                transform: 'translateY(-100vh) translateX(50px)', 
+                                opacity: '0' 
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body class="bg-slate-900 text-white overflow-x-hidden">
+    <!-- Particles Background -->
+    <div id="particles-bg" class="fixed inset-0 pointer-events-none z-0"></div>
+
+    <!-- Header -->
+    <header class="fixed top-0 w-full z-50 bg-slate-900/90 backdrop-blur-md border-b border-cyan-500/20">
+        <div class="container mx-auto px-4 lg:px-6">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-xl flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">2x3</span>
+                    </div>
+                    <div>
+                        <span class="text-xl font-bold text-white">2x3 Webs</span>
+                        <div class="text-xs text-cyan-400">Cuba Digital</div>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-300 hover:text-cyan-400 transition-colors font-medium">Inicio</a>
+                    <a href="#about" class="text-gray-300 hover:text-cyan-400 transition-colors font-medium">Nosotros</a>
+                    <a href="#services" class="text-gray-300 hover:text-cyan-400 transition-colors font-medium">Servicios</a>
+                    <a href="#portfolio" class="text-gray-300 hover:text-cyan-400 transition-colors font-medium">Portafolio</a>
+                    <a href="#contact" class="text-gray-300 hover:text-cyan-400 transition-colors font-medium">Contacto</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-white p-2">
+                    <span id="menu-icon">☰</span>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <nav id="mobile-menu" class="md:hidden py-4 border-t border-cyan-500/20 hidden">
+                <div class="flex flex-col space-y-4">
+                    <a href="#home" class="text-gray-300 hover:text-cyan-400 transition-colors font-medium mobile-nav-link">Inicio</a>
+                    <a href="#about" class="text-gray-300 hover:text-cyan-400 transition-colors font-medium mobile-nav-link">Nosotros</a>
+                    <a href="#services" class="text-gray-300 hover:text-cyan-400 transition-colors font-medium mobile-nav-link">Servicios</a>
+                    <a href="#portfolio" class="text-gray-300 hover:text-cyan-400 transition-colors font-medium mobile-nav-link">Portafolio</a>
+                    <a href="#contact" class="text-gray-300 hover:text-cyan-400 transition-colors font-medium mobile-nav-link">Contacto</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-16 min-h-screen flex items-center relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
+        <!-- Background Effects -->
+        <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-blue-500/5"></div>
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+        <div class="absolute top-1/2 left-1/2 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+
+        <div class="container mx-auto px-4 lg:px-6 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8 animate-float">
+                    <div class="space-y-6">
+                        <div class="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
+                            <div class="neon-border bg-slate-800/50 text-cyan-400 px-4 py-2 rounded-full flex items-center animate-pulse-neon backdrop-blur-sm">
+                                <span class="mr-2">⚡</span>
+                                Diseño Web Profesional
+                            </div>
+                            <div class="flex space-x-1">
+                                <span class="text-yellow-400 text-lg animate-pulse">★</span>
+                                <span class="text-yellow-400 text-lg animate-pulse" style="animation-delay: 0.1s;">★</span>
+                                <span class="text-yellow-400 text-lg animate-pulse" style="animation-delay: 0.2s;">★</span>
+                                <span class="text-yellow-400 text-lg animate-pulse" style="animation-delay: 0.3s;">★</span>
+                                <span class="text-yellow-400 text-lg animate-pulse" style="animation-delay: 0.4s;">★</span>
+                            </div>
+                        </div>
+
+                        <h1 class="text-5xl md:text-7xl font-bold text-white leading-tight">
+                            Sitios Web
+                            <span class="text-gradient-neon block sm:inline animate-gradient-shift">
+                                Únicos
+                            </span>
+                            <span class="block sm:inline">para Cuba</span>
+                        </h1>
+
+                        <p class="text-xl text-gray-300 leading-relaxed max-w-lg">
+                            🚀 Diseños modernos que convierten visitantes en clientes<br>
+                            💎 Tecnología de vanguardia adaptada al mercado cubano
+                        </p>
+
+                        <div class="flex flex-wrap items-center gap-6 text-sm text-gray-400">
+                            <div class="flex items-center space-x-2 bg-slate-800/50 px-4 py-2 rounded-full backdrop-blur-sm border border-cyan-500/20">
+                                <span class="text-green-400">🛡️</span>
+                                <span>100% Seguro</span>
+                            </div>
+                            <div class="flex items-center space-x-2 bg-slate-800/50 px-4 py-2 rounded-full backdrop-blur-sm border border-cyan-500/20">
+                                <span class="text-blue-400">🚀</span>
+                                <span>Entrega Rápida</span>
+                            </div>
+                            <div class="flex items-center space-x-2 bg-slate-800/50 px-4 py-2 rounded-full backdrop-blur-sm border border-cyan-500/20">
+                                <span class="text-cyan-400">👥</span>
+                                <span>+50 Clientes</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#contact" class="btn-neon text-center inline-flex items-center justify-center">
+                            <span class="mr-2">🚀</span>
+                            Comenzar
+                        </a>
+                        <a href="#portfolio" class="btn-neon-outline text-center inline-flex items-center justify-center">
+                            <span class="mr-2">👁️</span>
+                            Ver Portafolio
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Image -->
+                <div class="relative animate-float" style="animation-delay: 0.5s;">
+                    <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-3xl blur-3xl animate-pulse"></div>
+                    <div class="relative bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-3xl p-8 border border-cyan-500/20 backdrop-blur-sm">
+                        <img
+                            src="./public/images/hero-web-design.png"
+                            alt="Diseño Web Profesional - 2x3 Webs Cuba"
+                            class="rounded-2xl shadow-2xl w-full h-auto neon-glow"
+                            style="min-height: 400px; max-height: 600px; object-fit: cover;"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 bg-slate-800/30 relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-blue-500/5"></div>
+        <div class="container mx-auto px-4 lg:px-6 relative z-10">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-cyan-400 mb-2 neon-text">50+</div>
+                    <div class="text-gray-300">Proyectos</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-blue-400 mb-2 neon-text">3</div>
+                    <div class="text-gray-300">Años</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-purple-400 mb-2 neon-text">24/7</div>
+                    <div class="text-gray-300">Soporte</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-green-400 mb-2 neon-text">100%</div>
+                    <div class="text-gray-300">Satisfacción</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-slate-800/50 relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-blue-500/5"></div>
+        
+        <div class="container mx-auto px-4 lg:px-6 relative z-10">
+            <div class="text-center mb-16">
+                <div class="bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 mb-4 px-6 py-2 rounded-full inline-flex items-center animate-pulse-neon">
+                    <span class="mr-2">👥</span>
+                    Sobre 2x3 webs
+                </div>
+                <h2 class="text-4xl md:text-6xl font-bold text-white mb-6">
+                    Expertos en
+                    <span class="text-gradient-neon">Diseño Web</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    🎯 Especializados en el mercado cubano desde 2021
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-neon hover:scale-105 transition-all duration-300 group animate-float">
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:rotate-12 transition-transform">
+                            <span class="text-3xl">💻</span>
+                        </div>
+                        <h3 class="text-white text-xl font-bold mb-4 neon-text">Equipo Experto</h3>
+                        <p class="text-gray-300 text-base">💻 Desarrolladores especializados en tecnologías modernas</p>
+                    </div>
+                </div>
+
+                <div class="card-neon hover:scale-105 transition-all duration-300 group animate-float" style="animation-delay: 0.2s;">
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:rotate-12 transition-transform">
+                            <span class="text-3xl">🏆</span>
+                        </div>
+                        <h3 class="text-white text-xl font-bold mb-4 neon-text">Premiados</h3>
+                        <p class="text-gray-300 text-base">🏆 Reconocidos por la calidad y innovación en cada proyecto</p>
+                    </div>
+                </div>
+
+                <div class="card-neon hover:scale-105 transition-all duration-300 group animate-float" style="animation-delay: 0.4s;">
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:rotate-12 transition-transform">
+                            <span class="text-3xl">🌐</span>
+                        </div>
+                        <h3 class="text-white text-xl font-bold mb-4 neon-text">Cuba Digital</h3>
+                        <p class="text-gray-300 text-base">🇨🇺 Impulsando la transformación digital en Cuba</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-blue-500/5"></div>
+        
+        <div class="container mx-auto px-4 lg:px-6 relative z-10">
+            <div class="text-center mb-16">
+                <div class="bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 mb-4 px-6 py-2 rounded-full inline-flex items-center animate-pulse-neon">
+                    <span class="mr-2">🎨</span>
+                    Nuestros Servicios
+                </div>
+                <h2 class="text-4xl md:text-6xl font-bold text-white mb-6">
+                    Servicios
+                    <span class="text-gradient-neon">Premium</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">🎨 Todo lo que necesitas para destacar online</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="card-neon hover:scale-105 transition-all duration-300 group overflow-hidden animate-float">
+                    <div class="text-center relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <div class="w-20 h-20 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform relative z-10">
+                            <span class="text-3xl">💻</span>
+                        </div>
+                        <h3 class="text-white text-xl font-bold relative z-10 mb-4">Desarrollo Web</h3>
+                        <p class="text-gray-300 text-base relative z-10">🚀 Sitios web rápidos y modernos</p>
+                    </div>
+                </div>
+
+                <div class="card-neon hover:scale-105 transition-all duration-300 group overflow-hidden animate-float" style="animation-delay: 0.1s;">
+                    <div class="text-center relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <div class="w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform relative z-10">
+                            <span class="text-3xl">🎨</span>
+                        </div>
+                        <h3 class="text-white text-xl font-bold relative z-10 mb-4">Diseño UI/UX</h3>
+                        <p class="text-gray-300 text-base relative z-10">🎨 Interfaces que enamoran</p>
+                    </div>
+                </div>
+
+                <div class="card-neon hover:scale-105 transition-all duration-300 group overflow-hidden animate-float" style="animation-delay: 0.2s;">
+                    <div class="text-center relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <div class="w-20 h-20 bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform relative z-10">
+                            <span class="text-3xl">📱</span>
+                        </div>
+                        <h3 class="text-white text-xl font-bold relative z-10 mb-4">Responsive</h3>
+                        <p class="text-gray-300 text-base relative z-10">📱 Perfecto en todos los dispositivos</p>
+                    </div>
+                </div>
+
+                <div class="card-neon hover:scale-105 transition-all duration-300 group overflow-hidden animate-float" style="animation-delay: 0.3s;">
+                    <div class="text-center relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <div class="w-20 h-20 bg-gradient-to-r from-orange-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform relative z-10">
+                            <span class="text-3xl">🌐</span>
+                        </div>
+                        <h3 class="text-white text-xl font-bold relative z-10 mb-4">Hosting Web</h3>
+                        <p class="text-gray-300 text-base relative z-10">🌐 Alojamiento rápido y seguro</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 bg-slate-800/50 relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-blue-500/5"></div>
+        
+        <div class="container mx-auto px-4 lg:px-6 relative z-10">
+            <div class="text-center mb-16">
+                <div class="bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 mb-4 px-6 py-2 rounded-full inline-flex items-center animate-pulse-neon">
+                    <span class="mr-2">⭐</span>
+                    Nuestro Trabajo
+                </div>
+                <h2 class="text-4xl md:text-6xl font-bold text-white mb-6">
+                    Proyectos
+                    <span class="text-gradient-neon">Destacados</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">🎯 Casos de éxito que hablan por sí solos</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="card-neon hover:scale-105 transition-all duration-300 overflow-hidden group animate-float">
+                    <div class="relative">
+                        <div class="w-full h-48 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center">
+                            <span class="text-6xl">🖥️</span>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-white mb-2 neon-text">E-commerce Moderno</h3>
+                        <p class="text-gray-300 mb-4 text-sm">🛒 Tienda online completa</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="bg-cyan-500/20 text-cyan-400 text-xs px-3 py-1 rounded-full">React</span>
+                            <span class="bg-cyan-500/20 text-cyan-400 text-xs px-3 py-1 rounded-full">Next.js</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="card-neon hover:scale-105 transition-all duration-300 overflow-hidden group animate-float" style="animation-delay: 0.1s;">
+                    <div class="relative">
+                        <div class="w-full h-48 bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center">
+                            <span class="text-6xl">🎨</span>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-white mb-2 neon-text">Portfolio Creativo</h3>
+                        <p class="text-gray-300 mb-4 text-sm">🎨 Showcase profesional</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="bg-cyan-500/20 text-cyan-400 text-xs px-3 py-1 rounded-full">Vue</span>
+                            <span class="bg-cyan-500/20 text-cyan-400 text-xs px-3 py-1 rounded-full">Nuxt</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="card-neon hover:scale-105 transition-all duration-300 overflow-hidden group animate-float" style="animation-delay: 0.2s;">
+                    <div class="relative">
+                        <div class="w-full h-48 bg-gradient-to-br from-green-500/20 to-emerald-500/20 flex items-center justify-center">
+                            <span class="text-6xl">🏢</span>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-white mb-2 neon-text">App Corporativa</h3>
+                        <p class="text-gray-300 mb-4 text-sm">🏢 Solución empresarial</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="bg-cyan-500/20 text-cyan-400 text-xs px-3 py-1 rounded-full">Angular</span>
+                            <span class="bg-cyan-500/20 text-cyan-400 text-xs px-3 py-1 rounded-full">Node</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="card-neon hover:scale-105 transition-all duration-300 overflow-hidden group animate-float" style="animation-delay: 0.3s;">
+                    <div class="relative">
+                        <div class="w-full h-48 bg-gradient-to-br from-yellow-500/20 to-orange-500/20 flex items-center justify-center">
+                            <span class="text-6xl">📈</span>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-white mb-2 neon-text">Landing Page</h3>
+                        <p class="text-gray-300 mb-4 text-sm">📈 Conversión optimizada</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="bg-cyan-500/20 text-cyan-400 text-xs px-3 py-1 rounded-full">HTML5</span>
+                            <span class="bg-cyan-500/20 text-cyan-400 text-xs px-3 py-1 rounded-full">CSS3</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="card-neon hover:scale-105 transition-all duration-300 overflow-hidden group animate-float" style="animation-delay: 0.4s;">
+                    <div class="relative">
+                        <div class="w-full h-48 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 flex items-center justify-center">
+                            <span class="text-6xl">✍️</span>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-white mb-2 neon-text">Blog Personal</h3>
+                        <p class="text-gray-300 mb-4 text-sm">✍️ Plataforma de contenido</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="bg-cyan-500/20 text-cyan-400 text-xs px-3 py-1 rounded-full">WordPress</span>
+                            <span class="bg-cyan-500/20 text-cyan-400 text-xs px-3 py-1 rounded-full">PHP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="card-neon hover:scale-105 transition-all duration-300 overflow-hidden group animate-float" style="animation-delay: 0.5s;">
+                    <div class="relative">
+                        <div class="w-full h-48 bg-gradient-to-br from-red-500/20 to-pink-500/20 flex items-center justify-center">
+                            <span class="text-6xl">⚙️</span>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-white mb-2 neon-text">Sistema Web</h3>
+                        <p class="text-gray-300 mb-4 text-sm">⚙️ Gestión integral</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="bg-cyan-500/20 text-cyan-400 text-xs px-3 py-1 rounded-full">Laravel</span>
+                            <span class="bg-cyan-500/20 text-cyan-400 text-xs px-3 py-1 rounded-full">MySQL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-blue-500/5"></div>
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+
+        <div class="container mx-auto px-4 lg:px-6 relative z-10">
+            <div class="text-center mb-16">
+                <div class="bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 mb-4 px-6 py-2 rounded-full inline-flex items-center animate-pulse-neon">
+                    <span class="mr-2">📧</span>
+                    Contáctanos
+                </div>
+                <h2 class="text-4xl md:text-6xl font-bold text-white mb-6">
+                    ¿Listo para
+                    <span class="text-gradient-neon">Comenzar?</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">🚀 Hablemos de tu proyecto y hagámoslo realidad</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Contact Info -->
+                <div class="space-y-8">
+                    <div class="space-y-6">
+                        <a href="mailto:fpelegrincardoso@gmail.com" class="flex items-center space-x-4 group card-neon hover:scale-105 transition-all duration-300 animate-float">
+                            <div class="w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center neon-glow group-hover:scale-110 transition-transform">
+                                <span class="text-2xl">📧</span>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-semibold text-lg neon-text">Email</h3>
+                                <p class="text-gray-300 text-lg">fpelegrincardoso@gmail.com</p>
+                            </div>
+                        </a>
+
+                        <a href="https://wa.me/5352345678" class="flex items-center space-x-4 group card-neon hover:scale-105 transition-all duration-300 animate-float" style="animation-delay: 0.1s;">
+                            <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center neon-glow group-hover:scale-110 transition-transform">
+                                <span class="text-2xl">📱</span>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-semibold text-lg neon-text">WhatsApp</h3>
+                                <p class="text-gray-300 text-lg">+53 5234-5678</p>
+                            </div>
+                        </a>
+
+                        <div class="flex items-center space-x-4 group card-neon hover:scale-105 transition-all duration-300 animate-float" style="animation-delay: 0.2s;">
+                            <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center neon-glow group-hover:scale-110 transition-transform">
+                                <span class="text-2xl">📍</span>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-semibold text-lg neon-text">Ubicación</h3>
+                                <p class="text-gray-300 text-lg">La Habana, Cuba 🇨🇺</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="card-neon">
+                    <div class="mb-6">
+                        <h3 class="text-white text-2xl font-bold mb-2 neon-text">💬 Envíanos un mensaje</h3>
+                        <p class="text-gray-300 text-base">Te respondemos en menos de 24 horas ⚡</p>
+                    </div>
+
+                    <!-- Form Status -->
+                    <div id="form-status" class="mb-6 p-4 rounded-lg border hidden"></div>
+
+                    <!-- Contact Form -->
+                    <form id="contact-form" class="space-y-4">
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <input
+                                type="text"
+                                name="firstName"
+                                placeholder="👤 Nombre"
+                                class="input-neon"
+                                required
+                            />
+                            <input
+                                type="text"
+                                name="lastName"
+                                placeholder="👤 Apellido"
+                                class="input-neon"
+                                required
+                            />
+                        </div>
+
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="📧 Email"
+                            class="input-neon"
+                            required
+                        />
+
+                        <input
+                            type="text"
+                            name="subject"
+                            placeholder="📝 Asunto"
+                            class="input-neon"
+                            required
+                        />
+
+                        <textarea
+                            name="message"
+                            placeholder="💬 Cuéntanos sobre tu proyecto..."
+                            rows="5"
+                            class="input-neon resize-none"
+                            required
+                        ></textarea>
+
+                        <button type="submit" id="submit-btn" class="btn-neon w-full text-lg font-semibold">
+                            🚀 Enviar Mensaje
+                        </button>
+                    </form>
+
+                    <!-- Additional Info -->
+                    <div class="mt-6 p-4 bg-slate-800/50 rounded-lg border border-cyan-500/20 backdrop-blur-sm">
+                        <p class="text-cyan-400 text-sm text-center">
+                            📞 También puedes llamarnos directamente al +53 5234-5678
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Section -->
+    <section class="py-16 bg-slate-800/30 relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-blue-500/5"></div>
+
+        <div class="container mx-auto px-4 lg:px-6 relative z-10">
+            <div class="text-center mb-12">
+                <div class="bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 mb-4 px-6 py-2 rounded-full inline-flex items-center animate-pulse-neon">
+                    💳 Métodos de Pago
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+                    Pago <span class="text-gradient-neon">Fácil y Seguro</span>
+                </h2>
+                <p class="text-lg text-gray-300">Aceptamos múltiples formas de pago para tu comodidad</p>
+            </div>
+
+            <!-- Payment Methods -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-6 mb-12">
+                <!-- Cash -->
+                <div class="card-neon text-center hover:scale-105 transition-all duration-300 animate-float">
+                    <div class="text-4xl mb-4">💰</div>
+                    <h3 class="text-white font-semibold text-lg mb-2 neon-text">Efectivo</h3>
+                    <p class="text-gray-300 text-sm">Pago en efectivo en La Habana</p>
+                </div>
+
+                <!-- Transfer -->
+                <div class="card-neon text-center hover:scale-105 transition-all duration-300 animate-float" style="animation-delay: 0.1s;">
+                    <div class="text-4xl mb-4">🏦</div>
+                    <h3 class="text-white font-semibold text-lg mb-2 neon-text">Transferencia</h3>
+                    <p class="text-gray-300 text-sm">Transferencia bancaria nacional</p>
+                </div>
+
+                <!-- Card -->
+                <div class="card-neon text-center hover:scale-105 transition-all duration-300 animate-float" style="animation-delay: 0.2s;">
+                    <div class="text-4xl mb-4">💳</div>
+                    <h3 class="text-white font-semibold text-lg mb-2 neon-text">Tarjeta</h3>
+                    <p class="text-gray-300 text-sm">Tarjetas de débito y crédito</p>
+                </div>
+
+                <!-- PayPal - Highlighted -->
+                <div class="card-neon text-center hover:scale-105 transition-all duration-300 animate-float border-2 border-blue-500 shadow-lg shadow-blue-500/25 bg-blue-500/5" style="animation-delay: 0.3s;">
+                    <div class="text-4xl mb-4">🌐</div>
+                    <h3 class="text-blue-400 font-semibold text-lg mb-2 neon-text">PayPal</h3>
+                    <p class="text-gray-300 text-sm mb-3">Pagos seguros internacionales</p>
+                    <div class="flex flex-col gap-1">
+                        <span class="bg-blue-500/20 text-blue-400 text-xs px-2 py-1 rounded-full">⭐ Recomendado</span>
+                        <span class="bg-green-500/20 text-green-400 text-xs px-2 py-1 rounded-full">🌍 Internacional</span>
+                    </div>
+                </div>
+
+                <!-- Digital -->
+                <div class="card-neon text-center hover:scale-105 transition-all duration-300 animate-float" style="animation-delay: 0.4s;">
+                    <div class="text-4xl mb-4">📱</div>
+                    <h3 class="text-white font-semibold text-lg mb-2 neon-text">Digital</h3>
+                    <p class="text-gray-300 text-sm">Pagos móviles y digitales</p>
+                </div>
+            </div>
+
+            <!-- Hosting Plans -->
+            <div class="text-center">
+                <div class="bg-slate-800/50 border border-cyan-500/20 rounded-2xl p-8 max-w-4xl mx-auto backdrop-blur-sm">
+                    <h3 class="text-2xl font-bold text-white mb-4 neon-text">🎯 Planes de Hosting Incluidos</h3>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <div class="text-cyan-400 font-bold text-xl mb-2">Básico</div>
+                            <div class="text-gray-300 text-sm">
+                                • 5GB Almacenamiento<br>
+                                • 1 Dominio<br>
+                                • SSL Gratis<br>
+                                • Soporte 24/7
+                            </div>
+                        </div>
+                        <div class="text-center border-l border-r border-cyan-500/20 px-6">
+                            <div class="text-blue-400 font-bold text-xl mb-2">Profesional</div>
+                            <div class="text-gray-300 text-sm">
+                                • 20GB Almacenamiento<br>
+                                • 5 Dominios<br>
+                                • SSL Premium<br>
+                                • Backup Diario
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-purple-400 font-bold text-xl mb-2">Empresarial</div>
+                            <div class="text-gray-300 text-sm">
+                                • 100GB Almacenamiento<br>
+                                • Dominios Ilimitados<br>
+                                • CDN Global<br>
+                                • Soporte Prioritario
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-slate-900 border-t border-cyan-500/20">
+        <div class="container mx-auto px-4 lg:px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="flex items-center space-x-3 mb-4 md:mb-0">
+                    <div class="w-10 h-10 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-xl flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">2x3</span>
+                    </div>
+                    <div>
+                        <span class="text-xl font-bold text-white">2x3 Webs</span>
+                        <div class="text-xs text-cyan-400">Diseño Web Cuba 🇨🇺</div>
+                    </div>
+                </div>
+                <p class="text-gray-400 text-center md:text-right">
+                    © 2024 2x3 Webs. Transformando Cuba digitalmente ✨
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="./script.js"></script>
+</body>
+</html>

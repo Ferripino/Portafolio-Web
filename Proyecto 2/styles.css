@@ -1,0 +1,193 @@
+/* Custom CSS for effects that can't be done with Tailwind */
+
+/* Neon effects */
+.neon-glow {
+  box-shadow: 0 0 5px #22d3ee, 0 0 10px #22d3ee, 0 0 15px #22d3ee, 0 0 20px #22d3ee;
+}
+
+.neon-text {
+  text-shadow: 0 0 5px #22d3ee, 0 0 10px #22d3ee, 0 0 15px #22d3ee, 0 0 20px #22d3ee;
+}
+
+.neon-border {
+  border: 2px solid #22d3ee;
+  box-shadow: 0 0 10px #22d3ee, inset 0 0 10px rgba(34, 211, 238, 0.1);
+}
+
+.text-gradient-neon {
+  background: linear-gradient(135deg, #22d3ee, #3b82f6, #a855f7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* Card effects */
+.card-neon {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.7) 50%, rgba(15, 23, 42, 0.9) 100%);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(34, 211, 238, 0.4);
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  padding: 2rem;
+}
+
+.card-neon::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.card-neon:hover::before {
+  left: 100%;
+}
+
+.card-neon:hover {
+  transform: translateY(-5px) scale(1.02);
+  border-color: rgba(34, 211, 238, 0.8);
+  box-shadow: 0 10px 30px rgba(34, 211, 238, 0.3), 0 0 20px rgba(34, 211, 238, 0.2);
+}
+
+/* Button effects */
+.btn-neon {
+  background: linear-gradient(135deg, #06b6d4, #2563eb);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.75rem 2rem;
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.btn-neon::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-neon:hover::before {
+  left: 100%;
+}
+
+.btn-neon:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(34, 211, 238, 0.4), 0 0 20px rgba(34, 211, 238, 0.3);
+}
+
+.btn-neon:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-neon-outline {
+  background: transparent;
+  border: 2px solid #22d3ee;
+  color: #22d3ee;
+  border-radius: 0.5rem;
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-neon-outline:hover {
+  background: rgba(34, 211, 238, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.5), inset 0 0 20px rgba(34, 211, 238, 0.1);
+}
+
+/* Input effects */
+.input-neon {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.input-neon::placeholder {
+  color: rgba(156, 163, 175, 0.8);
+}
+
+.input-neon:focus {
+  outline: none;
+  border-color: #22d3ee;
+  box-shadow: 0 0 10px rgba(34, 211, 238, 0.3), inset 0 0 10px rgba(34, 211, 238, 0.1);
+}
+
+/* Particles */
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #22d3ee;
+  border-radius: 50%;
+  animation: float-particle 6s ease-in-out infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .card-neon {
+    padding: 1.5rem;
+  }
+
+  .btn-neon,
+  .btn-neon-outline {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .text-7xl {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+
+  .text-6xl {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+}
+
+@media (max-width: 480px) {
+  .text-7xl {
+    font-size: 2rem;
+  }
+
+  .text-6xl {
+    font-size: 1.8rem;
+  }
+
+  .card-neon {
+    margin-bottom: 1rem;
+    padding: 1rem;
+  }
+}
