@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Códigos QR</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+            color: #e2e8f0;
+        }
+        
+        .glass-effect {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(2, 8, 20, 0.6);
+        }
+        
+        .qr-container {
+            transition: all 0.3s ease;
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+        }
+        
+        .qr-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #0ea5e9 0%, #0369a1 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(14, 165, 233, 0.3);
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(14, 165, 233, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(14, 165, 233, 0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        input:focus {
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
+        }
+        
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(15, 23, 42, 0.9);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .toast.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+    <div class="w-full max-w-2xl">
+        <div class="glass-effect p-8 md:p-10">
+            <div class="text-center mb-8">
+                <span class="material-icons text-5xl text-cyan-400 mb-4">qr_code_scanner</span>
+                <h1 class="text-3xl md:text-4xl font-bold text-cyan-100 mb-2">Generador de Códigos QR</h1>
+                <p class="text-cyan-200/80">Convierte cualquier URL en un código QR en segundos</p>
+            </div>
+            
+            <div class="mb-8">
+                <div class="relative">
+                    <input 
+                        type="text" 
+                        id="urlInput" 
+                        placeholder="https://ejemplo.com" 
+                        class="w-full p-4 pr-12 rounded-xl bg-slate-800/70 border border-slate-600 focus:outline-none focus:border-cyan-500 text-white placeholder-slate-400 shadow-lg"
+                        value="https://ejemplo.com"
+                    >
+                    <span class="material-icons absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-400">link</span>
+                </div>
+                <p id="errorMessage" class="text-red-400 mt-2 text-sm hidden">Por favor, introduce una URL válida</p>
+            </div>
+            
+            <div class="flex justify-center mb-8">
+                <button 
+                    id="generateBtn" 
+                    class="btn-primary text-white font-semibold py-3 px-8 rounded-xl flex items-center gap-2 shadow-lg pulse"
+                >
+                    <span class="material-icons">qr_code_2</span>
+                    Generar Código QR
+                </button>
+            </div>
+            
+            <div id="qrResult" class="hidden fade-in">
+                <div class="glass-effect p-6 rounded-2xl mb-6">
+                    <h2 class="text-xl font-semibold text-cyan-100 mb-4 text-center flex items-center justify-center gap-2">
+                        <span class="material-icons">qr_code</span>
+                        Tu código QR
+                    </h2>
+                    <div class="flex justify-center">
+                        <div id="qrcode" class="qr-container"></div>
+                    </div>
+                    <p class="text-center text-slate-300 mt-4 text-sm">Escanea este código QR con tu dispositivo móvil</p>
+                </div>
+                
+                <div class="flex flex-col md:flex-row gap-4 justify-center">
+                    <button 
+                        id="downloadBtn" 
+                        class="bg-slate-700/50 hover:bg-slate-600/50 text-white font-medium py-3 px-6 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 border border-slate-600"
+                    >
+                        <span class="material-icons">download</span>
+                        Descargar QR
+                    </button>
+                    <button 
+                        id="shareBtn" 
+                        class="bg-slate-700/50 hover:bg-slate-600/50 text-white font-medium py-3 px-6 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 border border-slate-600"
+                    >
+                        <span class="material-icons">share</span>
+                        Compartir
+                    </button>
+                    <button 
+                        id="copyBtn" 
+                        class="bg-slate-700/50 hover:bg-slate-600/50 text-white font-medium py-3 px-6 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 border border-slate-600"
+                    >
+                        <span class="material-icons">content_copy</span>
+                        Copiar URL
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-8 text-slate-400 text-sm flex items-center justify-center gap-1">
+            <span class="material-icons text-sm">code</span>
+            <p>Hecho con HTML, CSS, JavaScript y Tailwind CSS</p>
+        </div>
+    </div>
+
+    <!-- Toast para mensajes -->
+    <div id="toast" class="toast"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlInput = document.getElementById('urlInput');
+            const generateBtn = document.getElementById('generateBtn');
+            const qrResult = document.getElementById('qrResult');
+            const qrcodeDiv = document.getElementById('qrcode');
+            const downloadBtn = document.getElementById('downloadBtn');
+            const shareBtn = document.getElementById('shareBtn');
+            const copyBtn = document.getElementById('copyBtn');
+            const errorMessage = document.getElementById('errorMessage');
+            const toast = document.getElementById('toast');
+            
+            // Inicializar QRCode
+            let qrcode = new QRCode(qrcodeDiv, {
+                text: "https://ejemplo.com",
+                width: 200,
+                height: 200,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+            
+            // Generar QR al hacer clic en el botón
+            generateBtn.addEventListener('click', generateQR);
+            
+            // Generar QR al presionar Enter en el campo de entrada
+            urlInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    generateQR();
+                }
+            });
+            
+            function generateQR() {
+                const url = urlInput.value.trim();
+                
+                // Validar URL
+                if (!isValidURL(url)) {
+                    errorMessage.classList.remove('hidden');
+                    urlInput.classList.add('border-red-500');
+                    return;
+                }
+                
+                // Limpiar mensaje de error si existe
+                errorMessage.classList.add('hidden');
+                urlInput.classList.remove('border-red-500');
+                
+                // Generar nuevo QR
+                qrcode.clear();
+                qrcode.makeCode(url);
+                
+                // Mostrar resultado
+                qrResult.classList.remove('hidden');
+            }
+            
+            // Función para validar URL
+            function isValidURL(string) {
+                if (!string) return false;
+                
+                // Patrón simple para validar URL
+                try {
+                    const url = new URL(string);
+                    return url.protocol === "http:" || url.protocol === "https:";
+                } catch (_) {
+                    return false;
+                }
+            }
+            
+            // Mostrar toast
+            function showToast(message, duration = 3000) {
+                toast.textContent = message;
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, duration);
+            }
+            
+            // Descargar QR
+            downloadBtn.addEventListener('click', function() {
+                const canvas = qrcodeDiv.querySelector('canvas');
+                if (canvas) {
+                    const link = document.createElement('a');
+                    link.download = 'codigo-qr.png';
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+                    showToast('Código QR descargado correctamente');
+                }
+            });
+            
+            // Compartir URL (mejorado)
+            shareBtn.addEventListener('click', function() {
+                const url = urlInput.value.trim();
+                
+                if (navigator.share) {
+                    // Usar Web Share API si está disponible
+                    navigator.share({
+                        title: 'Código QR generado',
+                        text: 'Mira este código QR que he generado',
+                        url: url
+                    })
+                    .then(() => showToast('¡Contenido compartido exitosamente!'))
+                    .catch((error) => {
+                        console.log('Error al compartir:', error);
+                        // Fallback: copiar URL al portapapeles
+                        copyToClipboard(url);
+                    });
+                } else {
+                    // Fallback: copiar URL al portapapeles
+                    copyToClipboard(url);
+                }
+            });
+            
+            // Copiar URL al portapapeles
+            copyBtn.addEventListener('click', function() {
+                const url = urlInput.value.trim();
+                copyToClipboard(url);
+            });
+            
+            // Función para copiar al portapapeles
+            function copyToClipboard(text) {
+                navigator.clipboard.writeText(text)
+                    .then(() => {
+                        showToast('URL copiada al portapapeles');
+                    })
+                    .catch(err => {
+                        console.error('Error al copiar: ', err);
+                        // Fallback para navegadores antiguos
+                        const textArea = document.createElement('textarea');
+                        textArea.value = text;
+                        document.body.appendChild(textArea);
+                        textArea.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(textArea);
+                        showToast('URL copiada al portapapeles');
+                    });
+            }
+            
+            // Efecto de entrada para el campo de URL
+            urlInput.focus();
+            
+            // Generar QR inicial
+            generateQR();
+        });
+    </script>
+</body>
+</html>
