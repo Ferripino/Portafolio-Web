@@ -1,0 +1,8 @@
+/Proyecto 1/
+/Proyecto 2/
+/Proyecto 3/
+
+# Optional: common ignores
+node_modules/
+.env
+.DS_Store
