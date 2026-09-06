@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { --background: #0a0e1a; --surface: #0d1117; --cyan: #00d4ff; --blue: #2563eb; --purple: #7c3aed; --text: #e2e8f0; --muted: #8fa3bc; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--background); color: var(--text); min-width: 320px; }
+::selection { background: rgba(0, 212, 255, .25); color: white; }
+.grid-bg { background-image: linear-gradient(rgba(0, 212, 255, .045) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 212, 255, .045) 1px, transparent 1px); background-size: 48px 48px; }
+.grid-bg::after { content: ''; position: absolute; inset: 0; pointer-events: none; background-image: radial-gradient(circle, rgba(0,212,255,.16) 1px, transparent 1px); background-size: 48px 48px; mask-image: linear-gradient(to bottom, black, transparent 80%); }
+.glass { background: rgba(255,255,255,.045); border: 1px solid rgba(255,255,255,.11); backdrop-filter: blur(16px); }
+.neon-border { box-shadow: 0 0 0 1px rgba(0,212,255,.18), 0 0 28px rgba(0,212,255,.08); }
+.gradient-text { background: linear-gradient(100deg, var(--cyan), #4f8cff 52%, var(--purple)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+*:focus-visible { outline: 2px solid var(--cyan); outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
