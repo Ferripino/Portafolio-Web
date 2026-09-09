@@ -1,3 +1,0 @@
-User-agent: *
-Disallow:
-Sitemap: https://portafolio-web-ferripinos-projects.vercel.app/sitemap.xml
